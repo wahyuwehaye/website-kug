@@ -1,0 +1,67 @@
+<?php
+
+return [
+    'site_title' => 'Direktorat Keuangan Telkom University',
+    'language' => 'Bahasa',
+    'hero_cta' => 'Pelajari Lebih Lanjut',
+    'latest_news' => 'Berita Terkini',
+    'announcements' => 'Pengumuman',
+    'program_and_services' => 'Program & Layanan Prioritas',
+    'services' => 'Layanan Keuangan',
+    'documents' => 'Dokumen Keuangan Terbaru',
+    'faqs' => 'Pertanyaan yang Sering Diajukan',
+    'read_more' => 'Selengkapnya',
+    'view_all' => 'Lihat Semua',
+    'contact_us' => 'Hubungi Kami',
+    'address' => 'Alamat',
+    'feedback' => 'Saran & Masukan',
+    'newsletter_cta' => 'Tetap terhubung dengan pembaruan Direktorat Keuangan',
+    'newsletter_placeholder' => 'Masukkan email institusi Anda',
+    'newsletter_submit' => 'Berlangganan',
+    'program_types' => [
+        'program' => 'Program Strategis',
+        'service' => 'Layanan Keuangan',
+        'policy' => 'Kebijakan & SOP',
+        'highlight' => 'Highlight Kinerja',
+    ],
+    'document_categories' => [
+        'report' => 'Laporan Keuangan',
+        'budget' => 'RBA & Anggaran',
+        'policy' => 'Kebijakan',
+        'transparency' => 'Transparansi & Keterbukaan',
+        'service_standard' => 'Standar Layanan',
+        'guideline' => 'Panduan & Prosedur',
+    ],
+    'documents_filters' => [
+        'search_placeholder' => 'Cari judul atau ringkasan dokumen...',
+        'category' => 'Kategori',
+        'year' => 'Tahun',
+    ],
+    'news' => [
+        'title' => 'Berita & Artikel',
+        'category_all' => 'Semua Kategori',
+        'empty' => 'Belum ada berita dipublikasikan.',
+        'published_at' => 'Dipublikasikan',
+    ],
+    'programs' => [
+        'title' => 'Program dan Layanan',
+        'empty' => 'Belum ada program yang ditampilkan.',
+        'filter_all' => 'Semua',
+    ],
+    'documents_list' => [
+        'title' => 'Repositori Dokumen Keuangan',
+        'empty' => 'Belum ada dokumen pada kategori ini.',
+        'download' => 'Unduh Dokumen',
+        'external' => 'Kunjungi tautan',
+    ],
+    'contact' => [
+        'title' => 'Hubungi Direktorat Keuangan',
+        'operational_hours' => 'Jam Operasional',
+        'social_media' => 'Media Sosial',
+    ],
+    'footer' => [
+        'rights' => 'Hak Cipta © :year Telkom University. Seluruh hak dilindungi.',
+        'quick_links' => 'Tautan Cepat',
+        'feedback' => 'Kirim Feedback',
+    ],
+];

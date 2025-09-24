@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --fi-color-primary-50: 255 251 235;
+        --fi-color-primary-100: 254 243 199;
+        --fi-color-primary-200: 253 230 138;
+        --fi-color-primary-300: 252 211 77;
+        --fi-color-primary-400: 251 191 36;
+        --fi-color-primary-500: 245 158 11;
+        --fi-color-primary-600: 217 119 6;
+        --fi-color-primary-700: 180 83 9;
+        --fi-color-primary-800: 146 64 14;
+        --fi-color-primary-900: 120 53 15;
+        --fi-color-primary-950: 69 26 3;
+    }
+
+    body.fi-body {
+        @apply bg-slate-950 text-slate-100 antialiased;
+        background-image: radial-gradient(circle at 20% 20%, rgba(244, 114, 182, 0.08), transparent 55%),
+            radial-gradient(circle at 80% 0%, rgba(96, 165, 250, 0.12), transparent 60%),
+            radial-gradient(circle at 50% 80%, rgba(251, 191, 36, 0.09), transparent 55%);
+    }
+}
+
+@layer components {
+    .fi-layout {
+        @apply bg-transparent;
+    }
+
+    .fi-topbar {
+        @apply border-b border-white/10 bg-slate-950/70 backdrop-blur-xl shadow-lg shadow-black/20;
+    }
+
+    .fi-topbar nav, .fi-topbar .fi-global-search {
+        @apply text-slate-100;
+    }
+
+    .fi-main-sidebar .fi-sidebar {
+        @apply border-r border-white/10 bg-slate-950/70 text-slate-200 backdrop-blur-xl;
+    }
+
+    .fi-main-sidebar .fi-sidebar-header {
+        @apply border-white/10 bg-transparent;
+    }
+
+    .fi-main-sidebar .fi-sidebar-item-button {
+        @apply rounded-2xl px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white;
+    }
+
+    .fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button {
+        @apply bg-amber-400/15 text-amber-200 shadow-lg shadow-amber-500/10 ring-1 ring-amber-400/30;
+    }
+
+    .fi-main-sidebar .fi-sidebar-group-label {
+        @apply text-slate-400;
+    }
+
+    .fi-main {
+        @apply mx-auto w-full max-w-7xl px-4 pb-16 pt-10 md:px-6 lg:px-8;
+    }
+
+    .fi-main > .fi-page {
+        @apply space-y-8;
+    }
+
+    .fi-section {
+        @apply rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl shadow-black/10 backdrop-blur;
+    }
+
+    .fi-card {
+        @apply rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl shadow-black/10 backdrop-blur;
+    }
+
+    .fi-widget, .fi-stats-overview {
+        @apply rounded-3xl border border-white/10 bg-slate-950/60 shadow-xl shadow-black/10 backdrop-blur;
+    }
+
+    .fi-simple-layout {
+        @apply bg-transparent;
+    }
+
+    .fi-simple-main {
+        @apply border border-white/10 bg-slate-950/80 shadow-2xl shadow-black/30 backdrop-blur;
+    }
+
+    .fi-forms-field-wrapper-label {
+        @apply text-slate-200;
+    }
+
+    .fi-input, .fi-select-input, .fi-textarea {
+        @apply rounded-2xl border-white/10 bg-white/5 text-slate-100 placeholder:text-slate-400 focus:border-amber-400 focus:ring-amber-300/60;
+    }
+
+    .fi-button {
+        @apply rounded-2xl px-5 py-2.5 text-sm font-semibold;
+    }
+
+    .fi-button.fi-color-primary:not([disabled]) {
+        @apply bg-gradient-to-r from-amber-500 via-orange-500 to-pink-500 text-slate-950 shadow-lg shadow-amber-500/30 hover:from-amber-400 hover:via-orange-400 hover:to-pink-400;
+    }
+
+    .fi-table {
+        @apply overflow-hidden rounded-3xl border border-white/10 bg-slate-950/60 shadow-xl shadow-black/10 backdrop-blur;
+    }
+
+    .fi-table thead tr {
+        @apply bg-white/5 text-slate-100;
+    }
+
+    .fi-table tbody tr:not(.fi-empty-table-row) {
+        @apply transition hover:bg-white/5;
+    }
+
+    .fi-breadcrumbs {
+        @apply text-slate-300;
+    }
+
+    .fi-global-search-input {
+        @apply rounded-full border-white/10 bg-white/5 text-slate-100 placeholder:text-slate-400;
+    }
+
+    .fi-user-menu-trigger {
+        @apply rounded-full border border-white/10 bg-white/5 text-slate-200 hover:border-amber-300/40 hover:bg-amber-300/10;
+    }
+
+    .fi-resource-table-record > td {
+        @apply border-white/5;
+    }
+}
+
+@layer utilities {
+    .glass-card {
+        @apply rounded-3xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 backdrop-blur-xl;
+    }
+}

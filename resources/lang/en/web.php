@@ -1,0 +1,67 @@
+<?php
+
+return [
+    'site_title' => 'Finance Directorate Telkom University',
+    'language' => 'Language',
+    'hero_cta' => 'Discover More',
+    'latest_news' => 'Latest News',
+    'announcements' => 'Announcements',
+    'program_and_services' => 'Priority Programs & Services',
+    'services' => 'Financial Services',
+    'documents' => 'Latest Financial Documents',
+    'faqs' => 'Frequently Asked Questions',
+    'read_more' => 'Read more',
+    'view_all' => 'View all',
+    'contact_us' => 'Contact Us',
+    'address' => 'Address',
+    'feedback' => 'Feedback',
+    'newsletter_cta' => 'Stay informed with Finance Directorate updates',
+    'newsletter_placeholder' => 'Enter your institutional email',
+    'newsletter_submit' => 'Subscribe',
+    'program_types' => [
+        'program' => 'Strategic Program',
+        'service' => 'Financial Service',
+        'policy' => 'Policies & SOP',
+        'highlight' => 'Performance Highlight',
+    ],
+    'document_categories' => [
+        'report' => 'Financial Report',
+        'budget' => 'RBA & Budget',
+        'policy' => 'Policy',
+        'transparency' => 'Transparency & Disclosure',
+        'service_standard' => 'Service Standard',
+        'guideline' => 'Guideline & Procedure',
+    ],
+    'documents_filters' => [
+        'search_placeholder' => 'Search documents by title or summary...',
+        'category' => 'Category',
+        'year' => 'Year',
+    ],
+    'news' => [
+        'title' => 'News & Articles',
+        'category_all' => 'All Categories',
+        'empty' => 'No news has been published yet.',
+        'published_at' => 'Published on',
+    ],
+    'programs' => [
+        'title' => 'Programs and Services',
+        'empty' => 'No programs are available yet.',
+        'filter_all' => 'All',
+    ],
+    'documents_list' => [
+        'title' => 'Finance Document Repository',
+        'empty' => 'No documents found for this filter.',
+        'download' => 'Download Document',
+        'external' => 'Visit link',
+    ],
+    'contact' => [
+        'title' => 'Contact the Finance Directorate',
+        'operational_hours' => 'Operational Hours',
+        'social_media' => 'Social Media',
+    ],
+    'footer' => [
+        'rights' => 'Copyright © :year Telkom University. All rights reserved.',
+        'quick_links' => 'Quick Links',
+        'feedback' => 'Submit Feedback',
+    ],
+];
