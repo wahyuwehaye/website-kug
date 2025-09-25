@@ -3,52 +3,52 @@
 @php($title = trans('web.programs.title'))
 
 @section('content')
-    <section class="bg-slate-50 py-14">
-        <div class="mx-auto max-w-7xl px-4">
-            <div class="flex flex-wrap items-center justify-between gap-4">
+    <section class="section-shell">
+        <div class="glass-panel p-8">
+            <div class="flex flex-wrap items-center justify-between gap-6">
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-900">{{ trans('web.programs.title') }}</h1>
-                    <p class="mt-2 text-sm text-slate-600">{{ __('Eksplor program strategis dan layanan Direktorat Keuangan.') }}</p>
+                    <p class="pill-muted">{{ trans('web.programs.title') }}</p>
+                    <h1 class="mt-4 text-3xl font-semibold text-white">{{ __('Inisiatif Strategis & Layanan Direktorat Keuangan') }}</h1>
+                    <p class="section-subtitle">{{ __('Eksplor program transformasi digital, layanan operasional, serta kebijakan tata kelola keuangan Telkom University.') }}</p>
                 </div>
-                <form method="get" class="flex flex-wrap items-center gap-3">
-                    <select name="type" class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm focus:border-primary-500 focus:outline-none">
+                <form method="get" class="glass-tile inline-flex flex-wrap items-center gap-3 border-white/10 bg-white/5 px-4 py-2 text-sm">
+                    <select name="type" class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white focus:border-amber-300 focus:outline-none">
                         <option value="">{{ trans('web.programs.filter_all') }}</option>
                         @foreach($types as $typeKey => $label)
                             <option value="{{ $typeKey }}" {{ $activeType === $typeKey ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-500">Filter</button>
+                    <button type="submit" class="rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300">{{ __('Filter') }}</button>
                 </form>
             </div>
 
-            <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 @forelse($programs as $program)
-                    <article class="group h-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                        <p class="text-xs font-semibold uppercase tracking-wide text-primary-600">{{ trans('web.program_types.' . $program->type) }}</p>
-                        <h2 class="mt-3 text-xl font-semibold text-slate-900">{{ $program->getTranslation('name', $activeLocale) }}</h2>
-                        <p class="mt-3 text-sm text-slate-600 line-clamp-4">{{ $program->getTranslation('summary', $activeLocale) }}</p>
-                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
+                    <article class="glass-tile hover-raise flex h-full flex-col gap-4 p-6">
+                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-amber-200">{{ trans('web.program_types.' . $program->type) }}</p>
+                        <div class="space-y-2">
+                            <h2 class="text-xl font-semibold text-white">{{ $program->getTranslation('name', $activeLocale) }}</h2>
+                            <p class="text-sm text-slate-300">{{ $program->getTranslation('summary', $activeLocale) }}</p>
+                        </div>
+                        <div class="mt-auto flex flex-wrap gap-2 text-xs">
                             @if($program->external_url)
-                                <span class="rounded-full bg-primary-50 px-3 py-1 text-primary-600">Digital</span>
+                                <span class="rounded-full border border-white/15 px-3 py-1 text-slate-200">Digital</span>
                             @endif
                             @if($program->is_featured)
-                                <span class="rounded-full bg-amber-100 px-3 py-1 text-amber-700">Featured</span>
+                                <span class="rounded-full bg-amber-400/20 px-3 py-1 text-amber-100">Featured</span>
                             @endif
                         </div>
-                        <a href="{{ route('programs.show', ['locale' => $activeLocale, 'program' => $program]) }}" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-500">
+                        <a href="{{ route('programs.show', ['locale' => $activeLocale, 'program' => $program]) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100">
                             {{ trans('web.read_more') }}
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25l4.5 4.5-4.5 4.5" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18" />
-                            </svg>
+                            <x-ui.icon name="arrow-right" class="h-4 w-4" />
                         </a>
                     </article>
                 @empty
-                    <p class="col-span-full rounded-3xl bg-white p-6 text-sm text-slate-600 shadow">{{ trans('web.programs.empty') }}</p>
+                    <p class="col-span-full rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-slate-300">{{ trans('web.programs.empty') }}</p>
                 @endforelse
             </div>
 
-            <div class="mt-8">
+            <div class="mt-10 text-center">
                 {{ $programs->onEachSide(1)->links() }}
             </div>
         </div>
