@@ -30,13 +30,14 @@
 
 @section('content')
     <section class="section-block pt-16">
-        <div class="hero-shell grid gap-10 p-10 lg:grid-cols-[1.15fr,0.85fr]">
-            <div class="space-y-8">
-                <div class="space-y-4">
-                    <span class="pill-muted">Telkom University Finance Directorate</span>
-                    <h2 class="text-3xl font-semibold leading-tight text-slate-900 md:text-[2.5rem]">
-                        {{ $siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Transparansi Tata Kelola Keuangan Telkom University' }}
-                    </h2>
+        <div class="hero-shell flex flex-col gap-10 p-10">
+            <div class="grid gap-10 lg:grid-cols-[1.35fr,0.75fr] lg:items-start">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <span class="pill-muted">Telkom University Finance Directorate</span>
+                        <h2 class="text-3xl font-semibold leading-tight text-slate-900 md:text-[2.5rem]">
+                            {{ $siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Transparansi Tata Kelola Keuangan Telkom University' }}
+                        </h2>
                     <p class="max-w-2xl text-base text-slate-600 md:text-lg">
                         {{ $siteSetting?->getTranslation('short_description', $activeLocale) ?? Str::limit(strip_tags($siteSetting?->getTranslation('about', $activeLocale)), 220) }}
                     </p>
@@ -82,10 +83,37 @@
                         <p class="mt-2 text-xs text-slate-500">{{ __('Program prioritas dan layanan operasional keuangan.') }}</p>
                     </div>
                 </dl>
+                </div>
+
+                <div class="card-soft h-full p-6">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-semibold uppercase tracking-[0.3em] text-red-500">{{ trans('web.announcements') }}</h4>
+                        <a href="{{ route('news.index', ['locale' => $activeLocale]) }}" class="text-xs font-semibold text-red-600 hover:text-red-500">{{ trans('web.view_all') }}</a>
+                    </div>
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                        @forelse($announcements as $announcement)
+                            <li class="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-4">
+                                <div class="flex items-center justify-between gap-3">
+                                    <p class="font-semibold text-slate-900">{{ $announcement->getTranslation('title', $activeLocale) }}</p>
+                                    <span class="text-xs text-slate-400">{{ $announcement->starts_at?->translatedFormat('d M Y') }}</span>
+                                </div>
+                                <p class="mt-2 text-xs text-slate-500">{{ Str::limit(strip_tags($announcement->getTranslation('body', $activeLocale)), 140) }}</p>
+                                @if($announcement->cta_url)
+                                    <a href="{{ $announcement->cta_url }}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-red-600 hover:text-red-500">
+                                        {{ $announcement->getTranslation('cta_label', $activeLocale) ?? trans('web.read_more') }}
+                                        <x-ui.icon name="arrow-right" class="h-3 w-3" />
+                                    </a>
+                                @endif
+                            </li>
+                        @empty
+                            <li class="rounded-2xl border border-dashed border-slate-300 p-4 text-xs text-slate-400">{{ __('Belum ada pengumuman aktif.') }}</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="hero-carousel" data-carousel>
+            @if($heroSlides->isNotEmpty())
+                <div class="hero-carousel w-full" data-carousel>
                     <div class="hero-progress" data-carousel-progress>
                         <div class="hero-progress-bar"></div>
                     </div>
@@ -142,32 +170,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="card-soft p-6">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-sm font-semibold uppercase tracking-[0.3em] text-red-500">{{ trans('web.announcements') }}</h4>
-                        <a href="{{ route('news.index', ['locale' => $activeLocale]) }}" class="text-xs font-semibold text-red-600 hover:text-red-500">{{ trans('web.view_all') }}</a>
-                    </div>
-                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
-                        @forelse($announcements as $announcement)
-                            <li class="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-4">
-                                <div class="flex items-center justify-between gap-3">
-                                    <p class="font-semibold text-slate-900">{{ $announcement->getTranslation('title', $activeLocale) }}</p>
-                                    <span class="text-xs text-slate-400">{{ $announcement->starts_at?->translatedFormat('d M Y') }}</span>
-                                </div>
-                                <p class="mt-2 text-xs text-slate-500">{{ Str::limit(strip_tags($announcement->getTranslation('body', $activeLocale)), 140) }}</p>
-                                @if($announcement->cta_url)
-                                    <a href="{{ $announcement->cta_url }}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-red-600 hover:text-red-500">
-                                        {{ $announcement->getTranslation('cta_label', $activeLocale) ?? trans('web.read_more') }}
-                                        <x-ui.icon name="arrow-right" class="h-3 w-3" />
-                                    </a>
-                                @endif
-                            </li>
-                        @empty
-                            <li class="rounded-2xl border border-dashed border-slate-300 p-4 text-xs text-slate-400">{{ __('Belum ada pengumuman aktif.') }}</li>
-                        @endforelse
-                    </ul>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 
