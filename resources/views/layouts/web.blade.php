@@ -72,13 +72,15 @@
 </head>
 <body class="min-h-screen">
     <header class="sticky top-0 z-40">
-        <div class="relative bg-slate-950/95 text-[11px] uppercase tracking-[0.32em] text-slate-100 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.8)] backdrop-blur">
+        <div class="relative bg-gradient-to-r from-[#BF121C] via-[#D62C3C] to-[#8F111F] text-[11px] uppercase tracking-[0.32em] text-rose-50 shadow-[0_12px_32px_-18px_rgba(127,17,28,0.65)] backdrop-blur">
             <div class="container-shell flex flex-wrap items-center justify-between gap-4 py-3">
                 <div class="flex items-center gap-3">
-                    <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-8 w-auto md:h-9" loading="lazy">
-                    <div class="hidden flex-col text-slate-100 md:flex">
+                    <div class="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-2 shadow-lg shadow-red-900/20">
+                        <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-8 w-auto md:h-9" loading="lazy">
+                    </div>
+                    <div class="hidden flex-col text-white md:flex">
                         <span class="font-semibold tracking-[0.32em]">{{ Str::upper($siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Finance Directorate Telkom University') }}</span>
-                        <span class="mt-1 text-[10px] normal-case tracking-[0.2em] text-slate-400">{{ __('Transparansi • Integritas • Layanan Terintegrasi') }}</span>
+                        <span class="mt-1 text-[10px] normal-case tracking-[0.2em] text-white/80">{{ __('Transparansi • Integritas • Layanan Terintegrasi') }}</span>
                     </div>
                 </div>
                 <div class="flex flex-1 items-center justify-end gap-3 text-[10px] md:justify-between">
