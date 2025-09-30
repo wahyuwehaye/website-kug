@@ -99,9 +99,9 @@
             </div>
         </div>
 
-        <div class="pt-[92px] lg:pt-[112px]"></div>
+        <div class="pt-[88px] lg:pt-[104px]"></div>
 
-        <div class="mt-3 bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur">
+        <div class="bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur">
             <div class="container-shell flex items-center justify-between gap-6 py-7">
                 <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex flex-col gap-1 text-left">
                     <span class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</span>
