@@ -461,12 +461,12 @@
                 <div class="partner-track">
                     @foreach($partnerLogos as $partner)
                         <div class="partner-item">
-                            <img src="{{ asset($partner['logo']) }}" alt="{{ $partner['name'] }}" class="h-10 w-auto object-contain">
+                            <img src="{{ asset($partner['logo']) }}" alt="{{ $partner['name'] }}" class="h-16 w-auto object-contain">
                         </div>
                     @endforeach
                     @foreach($partnerLogos as $partner)
                         <div class="partner-item">
-                            <img src="{{ asset($partner['logo']) }}" alt="{{ $partner['name'] }}" class="h-10 w-auto object-contain">
+                            <img src="{{ asset($partner['logo']) }}" alt="{{ $partner['name'] }}" class="h-16 w-auto object-contain">
                         </div>
                     @endforeach
                 </div>
