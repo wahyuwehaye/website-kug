@@ -64,9 +64,7 @@
             return $url;
         };
 
-        $favicon = $resolveAsset($siteSetting?->dark_logo_path)
-            ?? $resolveAsset($siteSetting?->logo_path)
-            ?? asset('assets/images/kug.png');
+        $favicon = asset('assets/images/kug.png');
     @endphp
 
     <link rel="icon" type="image/png" href="{{ $favicon }}">
