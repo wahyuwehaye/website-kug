@@ -24,7 +24,7 @@ function initBackToTop() {
     }
 
     const toggleVisibility = () => {
-        if (window.scrollY > 400) {
+        if (window.scrollY > 200) {
             button.classList.remove('hidden');
         } else {
             button.classList.add('hidden');
