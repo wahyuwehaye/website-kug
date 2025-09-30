@@ -28,12 +28,12 @@ class InitialContentSeeder extends Seeder
             'vision' => ['id' => 'Menjadi mitra strategis yang unggul dalam tata kelola keuangan perguruan tinggi.', 'en' => 'To become an excellent strategic partner in university financial governance.'],
             'mission' => ['id' => 'Menyediakan layanan keuangan yang profesional, akuntabel, dan adaptif terhadap kebutuhan sivitas.', 'en' => 'Provide professional, accountable, and responsive financial services for the entire community.'],
             'about' => ['id' => '<p>Direktorat Keuangan Telkom University mengelola siklus keuangan kampus mulai dari perencanaan anggaran, penatausahaan kas, administrasi pembiayaan mahasiswa, hingga pelaporan dan analisis kinerja keuangan. Seluruh layanan dikerjakan berbasis sistem digital terintegrasi untuk menjamin transparansi dan kepatuhan.</p>', 'en' => '<p>The Finance Directorate of Telkom University manages the full financial cycle from budget planning, treasury operations, student financing administration, to reporting and performance analytics. All services are supported by integrated digital systems to ensure transparency and compliance.</p>'],
-            'address' => ['id' => 'Gedung Bangkit, Lantai 3, Telkom University, Bandung', 'en' => 'Bangkit Building, 3rd Floor, Telkom University, Bandung'],
+            'address' => ['id' => 'Gedung Bangkit, Lantai 1, Telkom University, Bandung', 'en' => 'Bangkit Building, 1st Floor, Telkom University, Bandung'],
             'meta_description' => ['id' => 'Portal resmi Direktorat Keuangan Telkom University yang memuat layanan, program, dan informasi keuangan terbaru.', 'en' => 'Official portal of Telkom University Finance Directorate featuring services, programmes, and latest financial information.'],
             'meta_keywords' => ['id' => 'direktorat keuangan telkom university, layanan keuangan telkom, rba telkom university', 'en' => 'telkom university finance directorate, telkom finance services, university budgeting'],
             'email' => 'finance@telkomuniversity.ac.id',
-            'phone' => '+62 22 7564 108',
-            'whatsapp' => '+62 811 910 1212',
+            'phone' => '0811-2162-204',
+            'whatsapp' => '0822-1416-1954',
             'hotline' => '1500-133 (Finance Care)',
             'office_hours' => 'Senin - Jumat, 08.00 - 16.30 WIB',
             'feedback_url' => 'https://forms.gle/finance-feedback',
@@ -46,7 +46,7 @@ class InitialContentSeeder extends Seeder
             'dark_logo_path' => 'assets/images/Logo-Tel-U-glow.png',
             'primary_color' => '#BF121C',
             'secondary_color' => '#0E7490',
-            'map_embed' => '<p>Bangkit Building, 3rd Floor, Telkom University, Bandung</p>',
+            'map_embed' => '<p>Bangkit Building, 1st Floor, Telkom University, Bandung</p>',
             'map_lat' => -6.9739398,
             'map_lng' => 107.6325532,
             'map_zoom' => 18,
@@ -124,9 +124,10 @@ class InitialContentSeeder extends Seeder
         }
 
         foreach ([
-            ['title' => ['id' => 'Portal Akademik', 'en' => 'Academic Portal'], 'url' => 'https://siakad.telkomuniversity.ac.id', 'location' => 'quick'],
-            ['title' => ['id' => 'SIM Keuangan', 'en' => 'Finance Information System'], 'url' => 'https://finance.telkomuniversity.ac.id', 'location' => 'quick'],
-            ['title' => ['id' => 'E-Procurement', 'en' => 'E-Procurement'], 'url' => 'https://eproc.telkomuniversity.ac.id', 'location' => 'quick'],
+            ['title' => ['id' => 'Akademik', 'en' => 'Academic Affairs'], 'url' => 'https://baa.telkomuniversity.ac.id', 'location' => 'quick'],
+            ['title' => ['id' => 'Admisi Nasional', 'en' => 'National Admission'], 'url' => 'https://smb.telkomuniversity.ac.id', 'location' => 'quick'],
+            ['title' => ['id' => 'Kemahasiswaan', 'en' => 'Student Affairs'], 'url' => 'https://studentaffair.telkomuniversity.ac.id', 'location' => 'quick'],
+            ['title' => ['id' => 'Telkom University', 'en' => 'Telkom University'], 'url' => 'https://telkomuniversity.ac.id', 'location' => 'quick'],
             ['title' => ['id' => 'Repositori Dokumen', 'en' => 'Document Repository'], 'url' => '/documents', 'location' => 'footer'],
             ['title' => ['id' => 'Formulir Layanan', 'en' => 'Service Forms'], 'url' => '/documents?category=form', 'location' => 'footer'],
             ['title' => ['id' => 'Kebijakan Keuangan', 'en' => 'Financial Policies'], 'url' => '/documents?category=policy', 'location' => 'footer'],
@@ -351,10 +352,10 @@ class InitialContentSeeder extends Seeder
 
         ContactChannel::query()->truncate();
         ContactChannel::create([
-            'name' => ['id' => 'Helpdesk Keuangan', 'en' => 'Finance Helpdesk'],
+            'name' => ['id' => 'Telepon Layanan Keuangan', 'en' => 'Finance Service Hotline'],
             'type' => 'hotline',
-            'value' => '+62 811 1234 567',
-            'notes' => ['id' => 'Tersedia setiap hari kerja 08.00 - 17.00 WIB', 'en' => 'Available on workdays 08.00 - 17.00 (GMT+7)'],
+            'value' => '0811-2162-204',
+            'notes' => ['id' => 'Tersedia Senin - Jumat, 08.00 - 16.30 WIB', 'en' => 'Available Monday to Friday, 08:00 - 16:30 GMT+7'],
             'is_primary' => true,
         ]);
         ContactChannel::create([
@@ -364,10 +365,10 @@ class InitialContentSeeder extends Seeder
             'notes' => ['id' => 'Respons maksimal 1x24 jam kerja', 'en' => 'Response within 1 business day'],
         ]);
         ContactChannel::create([
-            'name' => ['id' => 'WhatsApp Pengaduan Keuangan', 'en' => 'Finance Complaint WhatsApp'],
+            'name' => ['id' => 'WhatsApp (Chat Only)', 'en' => 'WhatsApp (Chat Only)'],
             'type' => 'whatsapp',
-            'value' => '+62 811 9988 7766',
-            'notes' => ['id' => 'Gunakan format: Nama - Unit - Permasalahan', 'en' => 'Use format: Name - Unit - Issue description'],
+            'value' => '0822-1416-1954',
+            'notes' => ['id' => 'Gunakan untuk percakapan non-darurat, chat only.', 'en' => 'Use for non-emergency conversations, chat only.'],
         ]);
     }
 }
