@@ -5,6 +5,17 @@
 
 @php
     use Illuminate\Support\HtmlString;
+    use Illuminate\Support\Arr;
+
+    if ($name instanceof \Illuminate\Support\Stringable) {
+        $name = $name->toString();
+    }
+
+    if (is_array($name)) {
+        $name = Arr::first($name);
+    }
+
+    $identifier = (string) ($name ?: 'sparkles');
 
     $paths = [
         'chart-bar' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l6 6 12-12M9 21V9m6 6V3" />',
@@ -25,7 +36,7 @@
         'building-library' => '<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5M2.25 10.5h19.5M12 3 2.25 10.5h19.5L12 3zM4.5 10.5V21M9 10.5V21m6-10.5V21m4.5-10.5V21"/>',
     ];
 
-    $icon = new HtmlString($paths[$name] ?? $paths['sparkles']);
+    $icon = new HtmlString($paths[$identifier] ?? $paths['sparkles']);
 @endphp
 
 <svg {{ $attributes->merge(['class' => $class, 'fill' => 'none', 'stroke' => 'currentColor', 'stroke-width' => '1.5', 'viewBox' => '0 0 24 24', 'aria-hidden' => 'true']) }}>{!! $icon !!}</svg>

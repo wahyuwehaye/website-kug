@@ -236,7 +236,13 @@
         <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             @foreach($featuredPrograms as $program)
                 @php
-                    $programIcon = $program->icon ? Str::of($program->icon)->after('heroicon-o-')->after('heroicon-s-') : null;
+                    $programIcon = null;
+
+                    if ($program->icon) {
+                        $programIcon = (string) Str::of($program->icon)
+                            ->replace('heroicon-o-', '')
+                            ->replace('heroicon-s-', '');
+                    }
                 @endphp
                 <article class="card-soft flex h-full flex-col gap-4 p-6">
                     <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-red-600">
@@ -260,9 +266,15 @@
         @if($services->isNotEmpty())
             <div class="mt-12 grid gap-4 md:grid-cols-3">
                 @foreach($services as $service)
-                    @php
-                        $serviceIcon = $service->icon ? Str::of($service->icon)->after('heroicon-o-')->after('heroicon-s-') : null;
-                    @endphp
+                        @php
+                            $serviceIcon = null;
+
+                            if ($service->icon) {
+                                $serviceIcon = (string) Str::of($service->icon)
+                                    ->replace('heroicon-o-', '')
+                                    ->replace('heroicon-s-', '');
+                            }
+                        @endphp
                     <a href="{{ route('programs.show', ['locale' => $activeLocale, 'program' => $service]) }}" class="card-soft flex items-start gap-3 border border-red-100/60 bg-white/90 p-5 text-sm transition hover:-translate-y-1 hover:shadow-xl">
                         <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600">
                             @if($serviceIcon)
