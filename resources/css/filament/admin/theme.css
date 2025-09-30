@@ -20,36 +20,38 @@
     }
 
     body.fi-body {
-        @apply bg-slate-950 text-slate-100 antialiased;
-        background-image: radial-gradient(circle at 18% 18%, rgba(191, 18, 28, 0.22), transparent 55%),
-            radial-gradient(circle at 72% -5%, rgba(14, 116, 144, 0.18), transparent 60%),
-            radial-gradient(circle at 48% 82%, rgba(249, 115, 22, 0.18), transparent 55%);
+        @apply bg-slate-100 text-slate-800 antialiased;
+        background-image: radial-gradient(circle at 12% 18%, rgba(191, 18, 28, 0.08), transparent 55%),
+            radial-gradient(circle at 88% 0%, rgba(14, 116, 144, 0.08), transparent 60%),
+            linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.92));
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
 }
 
 @layer components {
-    .fi-main-sidebar {
-        @apply relative z-40;
-    }
-
-    .fi-main-ctn {
-        @apply relative z-10;
-    }
-
     .fi-layout {
         @apply bg-transparent;
     }
 
     .fi-topbar {
-        @apply sticky top-0 z-30 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl shadow-lg shadow-black/20;
+        @apply sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)] backdrop-blur;
     }
 
-    .fi-topbar nav, .fi-topbar .fi-global-search {
-        @apply text-slate-100;
+    .fi-topbar nav,
+    .fi-topbar .fi-global-search {
+        @apply text-slate-700;
+    }
+
+    .fi-global-search-input {
+        @apply rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 placeholder:text-slate-400 focus:border-red-400 focus:ring-red-300/40;
+    }
+
+    .fi-user-menu-trigger {
+        @apply rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-red-300 hover:bg-red-50 hover:text-red-600;
     }
 
     .fi-main-sidebar .fi-sidebar {
-        @apply border-r border-white/10 bg-slate-950/70 text-slate-200 backdrop-blur-xl;
+        @apply border-r border-slate-200/80 bg-gradient-to-b from-red-600/95 via-red-600/90 to-red-700/95 text-white backdrop-blur;
     }
 
     .fi-main-sidebar .fi-sidebar-header {
@@ -57,62 +59,49 @@
     }
 
     .fi-main-sidebar .fi-sidebar-item-button {
-        @apply rounded-2xl px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white;
+        @apply rounded-2xl px-3 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white;
     }
 
     .fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button {
-        @apply bg-amber-400/15 text-amber-200 shadow-lg shadow-amber-500/10 ring-1 ring-amber-400/30;
+        @apply bg-white text-red-600 shadow-lg shadow-red-900/15;
     }
 
     .fi-main-sidebar .fi-sidebar-group-label {
-        @apply text-slate-400;
+        @apply text-white/60;
     }
 
     .fi-main {
         @apply relative mx-auto w-full max-w-7xl px-4 pb-16 pt-10 md:px-6 lg:px-8;
     }
 
-    .fi-main::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background: radial-gradient(circle at 5% 15%, rgba(245, 158, 11, 0.22), transparent 60%),
-            radial-gradient(circle at 90% 20%, rgba(59, 130, 246, 0.18), transparent 55%),
-            linear-gradient(160deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.55));
-        opacity: 0.85;
-    }
-
     .fi-main > .fi-page {
         @apply space-y-8;
     }
 
-    .fi-section {
-        @apply rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl shadow-black/10 backdrop-blur;
+    .fi-section,
+    .fi-card,
+    .fi-widget,
+    .fi-stats-overview,
+    .fi-table {
+        @apply rounded-3xl border border-white/80 bg-white/95 shadow-[0_32px_80px_-55px_rgba(15,23,42,0.55)] backdrop-blur;
     }
 
-    .fi-card {
-        @apply rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl shadow-black/10 backdrop-blur;
+    .fi-table thead tr {
+        @apply bg-slate-50 text-slate-700;
     }
 
-    .fi-widget, .fi-stats-overview {
-        @apply rounded-3xl border border-white/10 bg-slate-950/60 shadow-xl shadow-black/10 backdrop-blur;
-    }
-
-    .fi-simple-layout {
-        @apply bg-transparent;
-    }
-
-    .fi-simple-main {
-        @apply border border-white/10 bg-slate-950/80 shadow-2xl shadow-black/30 backdrop-blur;
+    .fi-table tbody tr:not(.fi-empty-table-row) {
+        @apply transition hover:bg-slate-50;
     }
 
     .fi-forms-field-wrapper-label {
-        @apply text-slate-200;
+        @apply text-slate-700;
     }
 
-    .fi-input, .fi-select-input, .fi-textarea {
-        @apply rounded-2xl border-white/10 bg-white/5 text-slate-100 placeholder:text-slate-400 focus:border-amber-400 focus:ring-amber-300/60;
+    .fi-input,
+    .fi-select-input,
+    .fi-textarea {
+        @apply rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:border-red-400 focus:ring-red-200;
     }
 
     .fi-button {
@@ -120,61 +109,49 @@
     }
 
     .fi-button.fi-color-primary:not([disabled]) {
-        @apply bg-gradient-to-r from-red-600 via-red-500 to-amber-400 text-white shadow-lg shadow-red-500/30 hover:from-red-500 hover:via-red-400 hover:to-amber-300;
-    }
-
-    .fi-table {
-        @apply overflow-hidden rounded-3xl border border-white/10 bg-slate-950/60 shadow-xl shadow-black/10 backdrop-blur;
-    }
-
-    .fi-table thead tr {
-        @apply bg-white/5 text-slate-100;
-    }
-
-    .fi-table tbody tr:not(.fi-empty-table-row) {
-        @apply transition hover:bg-white/5;
+        @apply bg-gradient-to-r from-red-600 via-red-500 to-amber-400 text-white shadow-[0_18px_40px_-25px_rgba(191,18,28,0.6)] hover:from-red-500 hover:via-red-400 hover:to-amber-300;
     }
 
     .fi-breadcrumbs {
-        @apply text-slate-300;
+        @apply text-slate-500;
     }
 
-    .fi-global-search-input {
-        @apply rounded-full border-white/10 bg-white/5 text-slate-100 placeholder:text-slate-400;
+    .fi-simple-layout {
+        @apply bg-transparent;
     }
 
-    .fi-user-menu-trigger {
-        @apply rounded-full border border-white/10 bg-white/5 text-slate-200 hover:border-amber-300/40 hover:bg-amber-300/10;
+    .fi-simple-main {
+        @apply border border-slate-200/80 bg-white/95 shadow-[0_32px_80px_-60px_rgba(15,23,42,0.55)] backdrop-blur;
     }
 
-    .fi-resource-table-record > td {
-        @apply border-white/5;
+    .fi-notifications {
+        @apply text-slate-700;
     }
 }
 
 @layer utilities {
     .glass-card {
-        @apply rounded-3xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 backdrop-blur-xl;
+        @apply rounded-3xl border border-white/70 bg-white/90 shadow-[0_35px_85px_-60px_rgba(15,23,42,0.6)] backdrop-blur-xl;
     }
 
     .dashboard-stat-card {
-        @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/10 p-6 shadow-lg shadow-black/20 backdrop-blur-xl transition duration-200 hover:border-amber-300/40 hover:shadow-amber-500/20;
+        @apply relative overflow-hidden rounded-3xl border border-red-100 bg-gradient-to-br from-white via-red-50 to-white p-6 shadow-[0_28px_72px_-50px_rgba(191,18,28,0.6)] transition duration-200 hover:border-red-200 hover:shadow-[0_35px_90px_-50px_rgba(191,18,28,0.65)];
     }
 
     .dashboard-stat-card::after {
         content: '';
         position: absolute;
-        inset: auto -30% -40% auto;
-        width: 220px;
-        height: 220px;
+        inset: auto -25% -35% auto;
+        width: 210px;
+        height: 210px;
         background: radial-gradient(circle, rgba(251, 191, 36, 0.18), transparent 70%);
-        filter: blur(18px);
-        opacity: 0.7;
+        filter: blur(16px);
+        opacity: 0.6;
         transition: opacity 0.2s ease;
     }
 
     .dashboard-stat-card:hover::after {
-        opacity: 1;
+        opacity: 0.85;
     }
 
     .dashboard-timeline {
@@ -187,8 +164,8 @@
         position: absolute;
         inset: 0 0 0 1.05rem;
         border-radius: 9999px;
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0), rgba(248, 250, 252, 0.35));
-        opacity: 0.4;
+        background: linear-gradient(180deg, rgba(191, 18, 28, 0.3), rgba(191, 18, 28, 0));
+        opacity: 0.2;
         pointer-events: none;
     }
 
@@ -199,16 +176,8 @@
     .dashboard-timeline li::before {
         content: '';
         position: absolute;
-        left: 1rem;
         top: 0.75rem;
-        width: 0.45rem;
-        height: 0.45rem;
-        border-radius: 9999px;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.9), rgba(251, 191, 36, 0.4));
-        box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.08);
-    }
-
-    .dashboard-quick-action {
-        @apply flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100 transition duration-200 hover:border-amber-300/40 hover:bg-amber-300/10;
+        left: 0.2rem;
+        @apply h-3 w-3 rounded-full bg-gradient-to-br from-red-600 via-red-500 to-amber-400 shadow-[0_0_0_4px_rgba(255,255,255,0.9)];
     }
 }
