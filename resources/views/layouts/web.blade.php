@@ -65,6 +65,7 @@
         };
 
         $favicon = asset('assets/images/kug.png');
+        $primaryLogo = asset('assets/images/logo-kug-panjang.png');
     @endphp
 
     <link rel="icon" type="image/png" href="{{ $favicon }}">
@@ -73,19 +74,8 @@
     <header class="sticky top-0 z-40">
         <div class="relative bg-slate-950/95 text-[11px] uppercase tracking-[0.32em] text-slate-100 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.8)] backdrop-blur">
             <div class="container-shell flex flex-wrap items-center justify-between gap-4 py-3">
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2">
-                        @php
-                            $miniLogo = $resolveAsset($siteSetting?->logo_path) ?? asset('assets/images/kug.png');
-                            $telULogo = asset('assets/images/Logo-Tel-U-glow.png');
-                        @endphp
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
-                            <img src="{{ $miniLogo }}" alt="Logo KUG" class="h-6 w-6 object-contain">
-                        </span>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5">
-                            <img src="{{ $telULogo }}" alt="Logo Telkom University" class="h-6 w-6 object-contain">
-                        </span>
-                    </div>
+                <div class="flex items-center gap-3">
+                    <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-8 w-auto md:h-9" loading="lazy">
                     <div class="hidden flex-col text-slate-100 md:flex">
                         <span class="font-semibold tracking-[0.32em]">{{ Str::upper($siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Finance Directorate Telkom University') }}</span>
                         <span class="mt-1 text-[10px] normal-case tracking-[0.2em] text-slate-400">{{ __('Transparansi • Integritas • Layanan Terintegrasi') }}</span>
@@ -120,16 +110,8 @@
 
         <div class="bg-white shadow-sm shadow-slate-200/60">
             <div class="container-shell flex items-center justify-between gap-6 py-4">
-                <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex items-center gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-red-100 bg-white shadow-[0_18px_35px_-24px_rgba(191,18,28,0.45)]">
-                            <img src="{{ $resolveAsset($siteSetting?->logo_path) ?? asset('assets/images/kug.png') }}" alt="Logo KUG" class="h-12 w-12 object-contain">
-                        </div>
-                        <div class="hidden h-16 w-px bg-slate-200 lg:block"></div>
-                        <div class="hidden items-center gap-3 lg:flex">
-                            <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-12 w-auto">
-                        </div>
-                    </div>
+                <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex flex-1 items-center gap-4">
+                    <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-12 w-auto max-w-[220px] md:h-14" loading="lazy">
                     <div class="flex flex-col">
                         <p class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</p>
                         <h1 class="text-xl font-semibold text-slate-900">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h1>
