@@ -9,16 +9,16 @@
     $whatsapp = $siteSetting?->whatsapp ?? '0822-1416-1954';
 @endphp
 
-<div class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-100 px-6 py-12 text-slate-800">
+<div class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-100 via-white to-slate-100 px-4 py-10 text-slate-800 md:px-6 md:py-12">
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
         <div class="absolute -left-24 top-16 h-80 w-80 rounded-full bg-red-300/20 blur-[120px]"></div>
         <div class="absolute right-[-10%] top-1/3 h-96 w-96 rounded-full bg-emerald-200/20 blur-[180px]"></div>
         <div class="absolute -bottom-28 left-1/4 h-72 w-72 rounded-full bg-amber-200/25 blur-[160px]"></div>
     </div>
 
-    <div class="relative w-full max-w-6xl">
-        <div class="grid gap-8 lg:grid-cols-[1.05fr,0.95fr]">
-            <section class="rounded-[36px] border border-white/70 bg-white/90 p-10 shadow-[0_40px_100px_-60px_rgba(15,23,42,0.4)] backdrop-blur">
+    <div class="relative w-full max-w-5xl lg:max-w-6xl">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,1.1fr),minmax(0,0.9fr)] lg:gap-8">
+            <section class="rounded-[32px] border border-white/70 bg-white/95 p-8 shadow-[0_32px_90px_-60px_rgba(15,23,42,0.35)] backdrop-blur md:p-10">
                 <div class="flex flex-col justify-between gap-10">
                     <div class="space-y-6">
                         <div class="inline-flex items-center gap-4">
@@ -76,7 +76,7 @@
                 </div>
             </section>
 
-            <section class="relative rounded-[36px] border border-slate-200 bg-white p-8 shadow-[0_34px_80px_-60px_rgba(15,23,42,0.55)] sm:p-12">
+            <section class="relative rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_32px_80px_-60px_rgba(15,23,42,0.45)] md:p-10 lg:p-12">
                 <div class="mb-8 space-y-4">
                     <div class="flex items-center gap-3 text-red-500">
                         <span class="inline-flex h-11 w-11 items-center justify-center rounded-3xl bg-red-50 text-red-500">
