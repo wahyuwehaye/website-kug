@@ -7,12 +7,36 @@ const ready = () => {
     initFaqAccordion();
     initChatbot();
     initCampusMap();
+    initBackToTop();
 };
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
     ready();
+}
+
+function initBackToTop() {
+    const button = document.querySelector('[data-back-to-top]');
+
+    if (!button) {
+        return;
+    }
+
+    const toggleVisibility = () => {
+        if (window.scrollY > 400) {
+            button.classList.remove('hidden');
+        } else {
+            button.classList.add('hidden');
+        }
+    };
+
+    button.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
 }
 
 function initMobileNavigation() {

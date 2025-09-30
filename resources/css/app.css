@@ -18,6 +18,10 @@
         font-family: var(--font-sans);
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     a {
         @apply transition-colors duration-200;
     }
@@ -267,6 +271,10 @@
 
     .map-popup__cta {
         @apply block text-xs font-semibold uppercase tracking-[0.3em];
+    }
+
+    .back-to-top {
+        @apply fixed bottom-24 right-6 hidden h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-amber-400 text-white shadow-lg transition hover:from-red-500 hover:to-amber-300;
     }
 
     .page-hero {

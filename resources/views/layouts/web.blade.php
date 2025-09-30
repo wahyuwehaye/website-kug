@@ -71,8 +71,8 @@
     <link rel="icon" type="image/png" href="{{ $favicon }}">
 </head>
 <body class="min-h-screen">
-    <header class="sticky top-0 z-40">
-        <div class="relative bg-gradient-to-r from-[#BF121C] via-[#D62C3C] to-[#8F111F] text-[11px] uppercase tracking-[0.32em] text-rose-50 shadow-[0_12px_32px_-18px_rgba(127,17,28,0.65)] backdrop-blur">
+    <header class="relative z-40">
+        <div class="fixed inset-x-0 top-0 z-50 bg-gradient-to-r from-[#BF121C] via-[#D62C3C] to-[#8F111F] text-[11px] uppercase tracking-[0.32em] text-rose-50 shadow-[0_12px_32px_-18px_rgba(127,17,28,0.65)] backdrop-blur">
             <div class="container-shell flex flex-wrap items-center justify-between gap-4 py-3">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-3 rounded-2xl bg-white px-4 py-2 shadow-lg shadow-red-900/20">
@@ -109,6 +109,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="pt-[76px] lg:pt-[88px]"></div>
 
         <div class="bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur">
             <div class="container-shell flex items-center justify-between gap-6 py-4">
@@ -202,7 +204,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="scroll-smooth">
         @yield('content')
     </main>
 
@@ -278,6 +280,12 @@
         <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12c0 6.075 4.925 11 11 11 1.093 0 2.151-.155 3.158-.447a1.125 1.125 0 01.944.124l2.602 1.56a.563.563 0 00.84-.49l-.001-2.807a1.125 1.125 0 01.318-.783A10.96 10.96 0 0022.75 12c0-6.075-4.925-11-11-11s-11 4.925-11 11z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9.75h.008v.008H8.25V9.75zm7.5 0h.008v.008h-.008V9.75zm-7.5 4.5h7.5" />
+        </svg>
+    </button>
+
+    <button type="button" class="back-to-top hidden" data-back-to-top>
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
         </svg>
     </button>
 
