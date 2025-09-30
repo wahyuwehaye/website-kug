@@ -63,6 +63,14 @@ return [
         'title' => 'Standard Finance Forms',
         'subtitle' => 'Access request, reimbursement, and operational finance forms.',
     ],
+    'map' => [
+        'badge' => 'Finance Directorate',
+        'hours' => 'Operational Hours',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'whatsapp' => 'WhatsApp',
+        'open_directions' => 'Open Google Maps',
+    ],
     'contact' => [
         'title' => 'Contact the Finance Directorate',
         'operational_hours' => 'Operational Hours',

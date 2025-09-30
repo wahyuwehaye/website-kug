@@ -21,7 +21,7 @@ class InitialContentSeeder extends Seeder
 {
     public function run(): void
     {
-        $setting = SiteSetting::query()->firstOrCreate([], [
+        $setting = SiteSetting::query()->updateOrCreate([], [
             'name' => ['id' => 'Direktorat Keuangan Telkom University', 'en' => 'Telkom University Finance Directorate'],
             'tagline' => ['id' => 'Layanan Keuangan Terintegrasi bagi Seluruh Sivitas', 'en' => 'Integrated Financial Services for the Telkom University Community'],
             'short_description' => ['id' => 'Direktorat Keuangan menghadirkan layanan penganggaran, penatausahaan, dan pelaporan keuangan yang transparan untuk mendukung akademik dan bisnis Telkom University.', 'en' => 'The Finance Directorate delivers transparent budgeting, treasury, and reporting services that support Telkom University’s academic and business ecosystem.'],
@@ -46,9 +46,10 @@ class InitialContentSeeder extends Seeder
             'dark_logo_path' => 'assets/images/Logo-Tel-U-glow.png',
             'primary_color' => '#BF121C',
             'secondary_color' => '#0E7490',
-            'map_embed' => <<<'HTML'
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.4089405329926!2d107.6318364750023!3d-7.040149369130789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e99027d06155%3A0xd7217aa1e69a8b4!2sTelkom%20University!5e0!3m2!1sen!2sid!4v1732990800000!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full w-full"></iframe>
-HTML,
+            'map_embed' => '<p>Bangkit Building, 3rd Floor, Telkom University, Bandung</p>',
+            'map_lat' => -6.9739398,
+            'map_lng' => 107.6325532,
+            'map_zoom' => 18,
         ]);
 
         // Navigation

@@ -8,6 +8,19 @@
     <meta name="keywords" content="{{ $metaKeywords ?? $siteSetting?->getTranslation('meta_keywords', $activeLocale) }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha512-p0VfM9Gx7cN1NQikprADH+fB1S7yXp8uDKBoHyN6Sze1onrCq0Q2nv6N36CBuhwP/d9vyJqBiZ9p2J6kR7YCAw=="
+        crossorigin=""
+    >
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha512-VgXQymJmq9Z3rroWAtxEvsC0BpvyEukgqS0bkkCm1cWg5kyRjO6jwxKF1u9IiVbGi4ZTSdKCbFf8cpL4qkY7/Q=="
+        crossorigin=""
+        defer
+    ></script>
+
     @php
         use Illuminate\Support\Str;
 

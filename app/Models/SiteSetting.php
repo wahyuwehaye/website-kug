@@ -38,5 +38,8 @@ class SiteSetting extends Model
         'address' => 'array',
         'meta_description' => 'array',
         'meta_keywords' => 'array',
+        'map_lat' => 'float',
+        'map_lng' => 'float',
+        'map_zoom' => 'integer',
     ];
 }

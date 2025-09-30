@@ -428,18 +428,19 @@
                     @endforeach
                 </div>
             </div>
-            <div class="card-soft p-4">
-                @if($siteSetting?->map_embed)
-                    <div class="overflow-hidden rounded-2xl border border-slate-200">
-                        <div class="aspect-[4/3] md:aspect-[16/9]">
-                            {!! $siteSetting->map_embed !!}
-                        </div>
-                    </div>
-                @else
-                    <div class="flex h-full items-center justify-center rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-400">
-                        {{ __('Embed peta belum diatur.') }}
-                    </div>
-                @endif
+            <div class="card-soft p-0">
+                <x-ui.campus-map
+                    :lat="$mapLocation['lat']"
+                    :lng="$mapLocation['lng']"
+                    :zoom="$mapLocation['zoom']"
+                    :title="$mapLocation['title']"
+                    :address="$mapLocation['address']"
+                    :hours="$mapLocation['hours']"
+                    :phone="$mapLocation['phone']"
+                    :email="$mapLocation['email']"
+                    :whatsapp="$mapLocation['whatsapp']"
+                    :directions-url="$mapLocation['directions_url']"
+                />
             </div>
         </div>
     </section>

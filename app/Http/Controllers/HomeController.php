@@ -29,6 +29,19 @@ class HomeController extends Controller
         $faqs = Faq::query()->where('is_active', true)->orderBy('display_order')->take(6)->get();
         $contactChannels = ContactChannel::query()->orderByDesc('is_primary')->orderBy('sort')->get();
 
+        $mapLocation = [
+            'lat' => $setting?->map_lat ?? -6.9739398,
+            'lng' => $setting?->map_lng ?? 107.6325532,
+            'zoom' => $setting?->map_zoom ?? 18,
+            'title' => $setting?->getTranslation('name', $locale) ?? 'Telkom University Finance Directorate',
+            'address' => $setting?->getTranslation('address', $locale) ?? 'Bangkit Building, 3rd Floor, Telkom University, Bandung',
+            'hours' => $setting?->office_hours,
+            'phone' => $setting?->phone,
+            'email' => $setting?->email,
+            'whatsapp' => $setting?->whatsapp,
+            'directions_url' => 'https://www.google.com/maps/place/Bangkit+Building+-+Telkom+University/@-6.9739398,107.6325532,18z',
+        ];
+
         $partnerLogos = [
             ['name' => 'Bank Mandiri', 'logo' => 'assets/images/mandiri.jpg'],
             ['name' => 'Bank BNI', 'logo' => 'assets/images/bni.jpg'],
@@ -51,6 +64,7 @@ class HomeController extends Controller
             'faqs' => $faqs,
             'contactChannels' => $contactChannels,
             'partnerLogos' => $partnerLogos,
+            'mapLocation' => $mapLocation,
         ]);
     }
 }

@@ -6,6 +6,7 @@ const ready = () => {
     initHeroCarousel();
     initFaqAccordion();
     initChatbot();
+    initCampusMap();
 };
 
 if (document.readyState === 'loading') {
@@ -261,4 +262,83 @@ function initChatbot() {
     });
 
     appendMessage('Halo! Saya Asisten Keuangan Tel-U. Pilih menu di atas atau ajukan pertanyaan Anda.');
+}
+
+function initCampusMap() {
+    const wrappers = document.querySelectorAll('.map-shell');
+
+    if (!wrappers.length) {
+        return;
+    }
+
+    const attemptInitialise = () => {
+        if (typeof window.L === 'undefined') {
+            window.setTimeout(attemptInitialise, 200);
+            return;
+        }
+
+        wrappers.forEach((wrapper) => {
+            if (wrapper.dataset.mapReady === 'true') {
+                return;
+            }
+
+            const canvas = wrapper.querySelector('[data-map-canvas]');
+            if (!canvas) {
+                return;
+            }
+
+            const lat = parseFloat(wrapper.dataset.mapLat ?? '0');
+            const lng = parseFloat(wrapper.dataset.mapLng ?? '0');
+
+            if (Number.isNaN(lat) || Number.isNaN(lng)) {
+                return;
+            }
+
+            const zoom = parseInt(wrapper.dataset.mapZoom ?? '17', 10) || 17;
+            const map = L.map(canvas, {
+                scrollWheelZoom: false,
+                dragging: true,
+            }).setView([lat, lng], zoom);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
+                maxZoom: 20,
+            }).addTo(map);
+
+            const iconUrl = wrapper.dataset.mapMarker;
+            const markerOptions = iconUrl
+                ? {
+                    icon: L.icon({
+                        iconUrl,
+                        iconSize: [44, 44],
+                        iconAnchor: [22, 42],
+                        popupAnchor: [0, -38],
+                    }),
+                }
+                : undefined;
+
+            const marker = L.marker([lat, lng], markerOptions).addTo(map);
+            const popupTemplate = wrapper.querySelector('[data-map-popup]');
+
+            if (popupTemplate) {
+                marker.bindPopup(popupTemplate.innerHTML, {
+                    autoPanPadding: [24, 24],
+                }).openPopup();
+            }
+
+            wrapper.dataset.mapReady = 'true';
+
+            if (typeof ResizeObserver !== 'undefined') {
+                const resizeObserver = new ResizeObserver(() => map.invalidateSize());
+                resizeObserver.observe(wrapper);
+            } else {
+                window.addEventListener('resize', () => map.invalidateSize(), { passive: true });
+            }
+
+            wrapper.addEventListener('mouseenter', () => map.scrollWheelZoom.enable());
+            wrapper.addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+        });
+    };
+
+    attemptInitialise();
 }

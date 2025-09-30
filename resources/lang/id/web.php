@@ -63,6 +63,14 @@ return [
         'title' => 'Formulir Standar Direktorat Keuangan',
         'subtitle' => 'Akses formulir pengajuan dana, layanan pembayaran, dan referensi keuangan lainnya.',
     ],
+    'map' => [
+        'badge' => 'Direktorat Keuangan',
+        'hours' => 'Jam Operasional',
+        'phone' => 'Telepon',
+        'email' => 'Email',
+        'whatsapp' => 'WhatsApp',
+        'open_directions' => 'Lihat Rute di Google Maps',
+    ],
     'contact' => [
         'title' => 'Hubungi Direktorat Keuangan',
         'operational_hours' => 'Jam Operasional',

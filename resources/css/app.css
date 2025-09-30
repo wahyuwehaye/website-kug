@@ -203,6 +203,71 @@
     .chatbot-message.bot .bubble {
         @apply rounded-2xl rounded-bl-sm bg-slate-100 px-4 py-2 text-slate-700 shadow;
     }
+
+    .map-shell {
+        @apply relative h-full w-full overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_24px_70px_-40px_rgba(15,23,42,0.5)];
+    }
+
+    .map-canvas {
+        @apply h-full min-h-[320px] w-full;
+    }
+
+    .map-card {
+        @apply absolute bottom-6 left-6 right-auto w-full max-w-sm rounded-3xl border border-white/20 bg-white/95 p-6 text-sm text-slate-600 shadow-[0_25px_60px_-25px_rgba(8,15,32,0.45)] backdrop-blur;
+    }
+
+    .map-card__header {
+        @apply space-y-3;
+    }
+
+    .map-card__badge {
+        @apply inline-flex items-center gap-2 rounded-full bg-red-600/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-red-600;
+    }
+
+    .map-card__title {
+        @apply text-lg font-semibold text-slate-900;
+    }
+
+    .map-card__address {
+        @apply text-xs text-slate-500;
+    }
+
+    .map-card__details {
+        @apply mt-4 grid gap-3 text-xs text-slate-500;
+    }
+
+    .map-card__details dt {
+        @apply font-semibold uppercase tracking-[0.35em] text-slate-400;
+    }
+
+    .map-card__details dd {
+        @apply mt-1 text-sm text-slate-600;
+    }
+
+    .map-card__details a {
+        @apply text-red-600 hover:text-red-500;
+    }
+
+    .map-card__cta {
+        @apply mt-5 inline-flex items-center gap-2 rounded-full bg-red-600 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow hover:bg-red-500;
+    }
+
+    .map-popup {
+        @apply space-y-2 text-left text-sm text-slate-700;
+    }
+
+    .map-popup h3 {
+        @apply text-base font-semibold text-slate-900;
+    }
+
+    .map-popup__contact a,
+    .map-popup__cta {
+        @apply text-red-600 hover:text-red-500;
+    }
+
+    .map-popup__cta {
+        @apply block text-xs font-semibold uppercase tracking-[0.3em];
+    }
 }
 
 @layer utilities {
