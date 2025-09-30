@@ -99,10 +99,10 @@
             </div>
         </div>
 
-        <div class="pt-[88px] lg:pt-[104px]"></div>
+        <div class="pt-[74px] lg:pt-[88px]"></div>
 
-        <div class="bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur">
-            <div class="container-shell flex items-center justify-between gap-6 py-7">
+        <div class="bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur supports-[backdrop-filter]:bg-white/80 -mt-px">
+            <div class="container-shell flex items-center justify-between gap-6 py-6">
                 <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex flex-col gap-1 text-left">
                     <span class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</span>
                     <span class="text-xl font-semibold text-slate-900 md:text-2xl">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</span>
