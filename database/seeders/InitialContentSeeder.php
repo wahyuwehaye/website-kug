@@ -56,11 +56,11 @@ class InitialContentSeeder extends Seeder
         NavigationLink::query()->delete();
 
         $topLinks = [
-            ['title' => ['id' => 'Portal Layanan', 'en' => 'Service Portal'], 'url' => '#services', 'location' => 'top'],
-            ['title' => ['id' => 'Dokumen Publik', 'en' => 'Public Documents'], 'url' => '#documents', 'location' => 'top'],
-            ['title' => ['id' => 'Formulir', 'en' => 'Forms'], 'url' => '#downloads', 'location' => 'top'],
-            ['title' => ['id' => 'FAQ', 'en' => 'FAQ'], 'url' => '#faq', 'location' => 'top'],
-            ['title' => ['id' => 'Kontak', 'en' => 'Contact'], 'url' => '#contact', 'location' => 'top'],
+            ['title' => ['id' => 'Beranda', 'en' => 'Home'], 'url' => '/:locale', 'location' => 'top'],
+            ['title' => ['id' => 'Profil', 'en' => 'Profile'], 'url' => '/:locale/profile', 'location' => 'top'],
+            ['title' => ['id' => 'Berita', 'en' => 'News'], 'url' => '/:locale/news', 'location' => 'top'],
+            ['title' => ['id' => 'Pengumuman', 'en' => 'Announcements'], 'url' => '/:locale/announcements', 'location' => 'top'],
+            ['title' => ['id' => 'Download', 'en' => 'Downloads'], 'url' => '/:locale/downloads', 'location' => 'top'],
         ];
         foreach ($topLinks as $index => $link) {
             NavigationLink::create(array_merge($link, ['sort' => $index]));
@@ -68,48 +68,44 @@ class InitialContentSeeder extends Seeder
 
         $mainMenu = [
             [
-                'title' => ['id' => 'Profil', 'en' => 'Profile'],
-                'url' => '#profil',
+                'title' => ['id' => 'Beranda', 'en' => 'Home'],
+                'url' => '/',
+                'location' => 'main',
+            ],
+            [
+                'title' => ['id' => 'Profil Direktorat Keuangan', 'en' => 'Finance Directorate Profile'],
+                'url' => '/profile',
                 'location' => 'main',
                 'children' => [
-                    ['title' => ['id' => 'Tentang Direktorat', 'en' => 'About Directorate'], 'url' => '#profil'],
-                    ['title' => ['id' => 'Visi & Misi', 'en' => 'Vision & Mission'], 'url' => '#profil'],
-                    ['title' => ['id' => 'Struktur Organisasi', 'en' => 'Organisation Structure'], 'url' => '#profil'],
+                    ['title' => ['id' => 'Visi dan Misi', 'en' => 'Vision & Mission'], 'url' => '/profile#vision'],
+                    ['title' => ['id' => 'Struktur Organisasi', 'en' => 'Organisation Structure'], 'url' => '/profile#structure'],
+                    ['title' => ['id' => 'Strategic Plan', 'en' => 'Strategic Plan'], 'url' => '/profile#strategic-plan'],
+                    ['title' => ['id' => 'Facts & Figures', 'en' => 'Facts & Figures'], 'url' => '/profile#facts'],
                 ],
             ],
             [
-                'title' => ['id' => 'Layanan', 'en' => 'Services'],
-                'url' => '#services',
-                'location' => 'main',
-                'children' => [
-                    ['title' => ['id' => 'Program Strategis', 'en' => 'Strategic Programmes'], 'url' => '/programs?type=program'],
-                    ['title' => ['id' => 'Layanan Operasional', 'en' => 'Operational Services'], 'url' => '/programs?type=service'],
-                    ['title' => ['id' => 'Highlight Kinerja', 'en' => 'Performance Highlights'], 'url' => '/programs?type=highlight'],
-                ],
-            ],
-            [
-                'title' => ['id' => 'Dokumen', 'en' => 'Documents'],
-                'url' => '#documents',
-                'location' => 'main',
-                'children' => [
-                    ['title' => ['id' => 'Repositori Dokumen', 'en' => 'Document Repository'], 'url' => '/documents'],
-                    ['title' => ['id' => 'Formulir Layanan', 'en' => 'Service Forms'], 'url' => '/documents?category=form'],
-                    ['title' => ['id' => 'Standar & SOP', 'en' => 'Standards & SOP'], 'url' => '/documents?category=service_standard'],
-                ],
-            ],
-            [
-                'title' => ['id' => 'Berita', 'en' => 'News'],
+                'title' => ['id' => 'Berita & Info', 'en' => 'News & Info'],
                 'url' => '/news',
                 'location' => 'main',
             ],
             [
-                'title' => ['id' => 'FAQ', 'en' => 'FAQ'],
-                'url' => '#faq',
+                'title' => ['id' => 'Arsip', 'en' => 'Archives'],
+                'url' => '/archives',
                 'location' => 'main',
             ],
             [
-                'title' => ['id' => 'Kontak', 'en' => 'Contact'],
-                'url' => '/contact',
+                'title' => ['id' => 'Pengumuman', 'en' => 'Announcements'],
+                'url' => '/announcements',
+                'location' => 'main',
+            ],
+            [
+                'title' => ['id' => 'FAQ', 'en' => 'FAQ'],
+                'url' => '/faq',
+                'location' => 'main',
+            ],
+            [
+                'title' => ['id' => 'Download', 'en' => 'Downloads'],
+                'url' => '/downloads',
                 'location' => 'main',
             ],
         ];

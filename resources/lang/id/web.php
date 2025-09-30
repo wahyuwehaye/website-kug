@@ -63,6 +63,15 @@ return [
         'title' => 'Formulir Standar Direktorat Keuangan',
         'subtitle' => 'Akses formulir pengajuan dana, layanan pembayaran, dan referensi keuangan lainnya.',
     ],
+    'menu' => [
+        'home' => 'Beranda',
+        'profile' => 'Profil Direktorat Keuangan',
+        'news' => 'Berita & Info',
+        'archives' => 'Arsip',
+        'announcements' => 'Pengumuman',
+        'faq' => 'FAQ',
+        'downloads' => 'Download',
+    ],
     'map' => [
         'badge' => 'Direktorat Keuangan',
         'hours' => 'Jam Operasional',

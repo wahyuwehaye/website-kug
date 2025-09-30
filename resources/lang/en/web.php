@@ -63,6 +63,15 @@ return [
         'title' => 'Standard Finance Forms',
         'subtitle' => 'Access request, reimbursement, and operational finance forms.',
     ],
+    'menu' => [
+        'home' => 'Home',
+        'profile' => 'Finance Directorate Profile',
+        'news' => 'News & Info',
+        'archives' => 'Archives',
+        'announcements' => 'Announcements',
+        'faq' => 'FAQ',
+        'downloads' => 'Downloads',
+    ],
     'map' => [
         'badge' => 'Finance Directorate',
         'hours' => 'Operational Hours',

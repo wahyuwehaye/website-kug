@@ -18,6 +18,12 @@ Route::middleware('web')->group(function () {
         Route::get('programs', [ProgramController::class, 'index'])->name('programs.index');
         Route::get('programs/{program:slug}', [ProgramController::class, 'show'])->name('programs.show');
 
+        Route::get('profile', \App\Http\Controllers\ProfileController::class)->name('profile');
+        Route::get('announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements.index');
+        Route::get('faq', \App\Http\Controllers\FaqController::class)->name('faq.index');
+        Route::get('downloads', [\App\Http\Controllers\DownloadController::class, 'index'])->name('downloads.index');
+        Route::get('archives', \App\Http\Controllers\ArchiveController::class)->name('archives.index');
+
         Route::get('news', [NewsController::class, 'index'])->name('news.index');
         Route::get('news/{newsPost:slug}', [NewsController::class, 'show'])->name('news.show');
 
