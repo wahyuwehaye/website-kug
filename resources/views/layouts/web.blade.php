@@ -57,7 +57,6 @@
     @endphp
 
     <link rel="icon" type="image/png" href="{{ $favicon }}">
-    @endphp
 </head>
 <body class="min-h-screen">
     <header class="sticky top-0 z-40">
