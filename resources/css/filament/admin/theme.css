@@ -6,24 +6,24 @@
 
 @layer base {
     :root {
-        --fi-color-primary-50: 255 251 235;
-        --fi-color-primary-100: 254 243 199;
-        --fi-color-primary-200: 253 230 138;
-        --fi-color-primary-300: 252 211 77;
-        --fi-color-primary-400: 251 191 36;
-        --fi-color-primary-500: 245 158 11;
-        --fi-color-primary-600: 217 119 6;
-        --fi-color-primary-700: 180 83 9;
-        --fi-color-primary-800: 146 64 14;
-        --fi-color-primary-900: 120 53 15;
-        --fi-color-primary-950: 69 26 3;
+        --fi-color-primary-50: 254 242 242;
+        --fi-color-primary-100: 254 226 226;
+        --fi-color-primary-200: 254 202 202;
+        --fi-color-primary-300: 252 165 165;
+        --fi-color-primary-400: 248 113 113;
+        --fi-color-primary-500: 191 18 28;
+        --fi-color-primary-600: 153 8 21;
+        --fi-color-primary-700: 127 6 17;
+        --fi-color-primary-800: 83 4 14;
+        --fi-color-primary-900: 46 3 9;
+        --fi-color-primary-950: 24 2 6;
     }
 
     body.fi-body {
         @apply bg-slate-950 text-slate-100 antialiased;
-        background-image: radial-gradient(circle at 20% 20%, rgba(244, 114, 182, 0.08), transparent 55%),
-            radial-gradient(circle at 80% 0%, rgba(96, 165, 250, 0.12), transparent 60%),
-            radial-gradient(circle at 50% 80%, rgba(251, 191, 36, 0.09), transparent 55%);
+        background-image: radial-gradient(circle at 18% 18%, rgba(191, 18, 28, 0.22), transparent 55%),
+            radial-gradient(circle at 72% -5%, rgba(14, 116, 144, 0.18), transparent 60%),
+            radial-gradient(circle at 48% 82%, rgba(249, 115, 22, 0.18), transparent 55%);
     }
 }
 
@@ -120,7 +120,7 @@
     }
 
     .fi-button.fi-color-primary:not([disabled]) {
-        @apply bg-gradient-to-r from-amber-500 via-orange-500 to-pink-500 text-slate-950 shadow-lg shadow-amber-500/30 hover:from-amber-400 hover:via-orange-400 hover:to-pink-400;
+        @apply bg-gradient-to-r from-red-600 via-red-500 to-amber-400 text-white shadow-lg shadow-red-500/30 hover:from-red-500 hover:via-red-400 hover:to-amber-300;
     }
 
     .fi-table {

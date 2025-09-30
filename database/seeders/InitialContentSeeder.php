@@ -15,32 +15,37 @@ use App\Models\Program;
 use App\Models\SiteSetting;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class InitialContentSeeder extends Seeder
 {
     public function run(): void
     {
         $setting = SiteSetting::query()->firstOrCreate([], [
-            'name' => ['id' => 'Direktorat Keuangan', 'en' => 'Finance Directorate'],
-            'tagline' => ['id' => 'Transparan, Akuntabel, dan Lincah', 'en' => 'Transparent, Accountable, and Agile'],
-            'short_description' => ['id' => 'Direktorat Keuangan Telkom University memastikan tata kelola keuangan yang efektif dan berkelanjutan.', 'en' => 'Telkom University Finance Directorate ensures effective and sustainable financial governance.'],
-            'vision' => ['id' => 'Menjadi pengelola keuangan perguruan tinggi terbaik berkelas dunia.', 'en' => 'To become a world-class university finance manager.'],
-            'mission' => ['id' => 'Mengelola anggaran dan layanan keuangan secara inovatif, transparan, dan akuntabel.', 'en' => 'Manage budgeting and financial services in an innovative, transparent, and accountable manner.'],
-            'about' => ['id' => '<p>Direktorat Keuangan bertanggung jawab memastikan pengelolaan keuangan Telkom University berjalan sesuai prinsip tata kelola yang baik dengan dukungan proses digital dan layanan prima.</p>', 'en' => '<p>The Finance Directorate ensures Telkom University finance management runs according to good governance principles supported by digital processes and excellent services.</p>'],
-            'address' => ['id' => 'Gedung Bangkit Lantai 3, Telkom University, Bandung', 'en' => 'Bangkit Building 3rd Floor, Telkom University, Bandung'],
-            'meta_description' => ['id' => 'Informasi program, layanan, dan laporan keuangan Direktorat Keuangan Telkom University.', 'en' => 'Programs, services, and financial reports of Telkom University Finance Directorate.'],
-            'meta_keywords' => ['id' => 'direktorat keuangan, telkom university, anggaran, layanan keuangan', 'en' => 'finance directorate, telkom university, budget, financial services'],
+            'name' => ['id' => 'Direktorat Keuangan Telkom University', 'en' => 'Telkom University Finance Directorate'],
+            'tagline' => ['id' => 'Layanan Keuangan Terintegrasi bagi Seluruh Sivitas', 'en' => 'Integrated Financial Services for the Telkom University Community'],
+            'short_description' => ['id' => 'Direktorat Keuangan menghadirkan layanan penganggaran, penatausahaan, dan pelaporan keuangan yang transparan untuk mendukung akademik dan bisnis Telkom University.', 'en' => 'The Finance Directorate delivers transparent budgeting, treasury, and reporting services that support Telkom University’s academic and business ecosystem.'],
+            'vision' => ['id' => 'Menjadi mitra strategis yang unggul dalam tata kelola keuangan perguruan tinggi.', 'en' => 'To become an excellent strategic partner in university financial governance.'],
+            'mission' => ['id' => 'Menyediakan layanan keuangan yang profesional, akuntabel, dan adaptif terhadap kebutuhan sivitas.', 'en' => 'Provide professional, accountable, and responsive financial services for the entire community.'],
+            'about' => ['id' => '<p>Direktorat Keuangan Telkom University mengelola siklus keuangan kampus mulai dari perencanaan anggaran, penatausahaan kas, administrasi pembiayaan mahasiswa, hingga pelaporan dan analisis kinerja keuangan. Seluruh layanan dikerjakan berbasis sistem digital terintegrasi untuk menjamin transparansi dan kepatuhan.</p>', 'en' => '<p>The Finance Directorate of Telkom University manages the full financial cycle from budget planning, treasury operations, student financing administration, to reporting and performance analytics. All services are supported by integrated digital systems to ensure transparency and compliance.</p>'],
+            'address' => ['id' => 'Gedung Bangkit, Lantai 3, Telkom University, Bandung', 'en' => 'Bangkit Building, 3rd Floor, Telkom University, Bandung'],
+            'meta_description' => ['id' => 'Portal resmi Direktorat Keuangan Telkom University yang memuat layanan, program, dan informasi keuangan terbaru.', 'en' => 'Official portal of Telkom University Finance Directorate featuring services, programmes, and latest financial information.'],
+            'meta_keywords' => ['id' => 'direktorat keuangan telkom university, layanan keuangan telkom, rba telkom university', 'en' => 'telkom university finance directorate, telkom finance services, university budgeting'],
             'email' => 'finance@telkomuniversity.ac.id',
             'phone' => '+62 22 7564 108',
-            'whatsapp' => '+62 813 0000 1234',
-            'hotline' => '0800-123-456',
-            'office_hours' => 'Senin - Jumat, 08.00 - 16.00 WIB',
+            'whatsapp' => '+62 811 910 1212',
+            'hotline' => '1500-133 (Finance Care)',
+            'office_hours' => 'Senin - Jumat, 08.00 - 16.30 WIB',
             'feedback_url' => 'https://forms.gle/finance-feedback',
             'facebook_url' => 'https://facebook.com/telkomuniversity',
             'instagram_url' => 'https://instagram.com/finance.telu',
             'linkedin_url' => 'https://linkedin.com/school/telkom-university',
             'youtube_url' => 'https://youtube.com/telkomuniversity',
             'sso_login_url' => 'https://login.telkomuniversity.ac.id',
+            'logo_path' => 'assets/images/kug.png',
+            'dark_logo_path' => 'assets/images/Logo-Tel-U-glow.png',
+            'primary_color' => '#BF121C',
+            'secondary_color' => '#0E7490',
             'map_embed' => <<<'HTML'
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.4089405329926!2d107.6318364750023!3d-7.040149369130789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e99027d06155%3A0xd7217aa1e69a8b4!2sTelkom%20University!5e0!3m2!1sen!2sid!4v1732990800000!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full w-full"></iframe>
 HTML,
@@ -50,9 +55,11 @@ HTML,
         NavigationLink::query()->delete();
 
         $topLinks = [
-            ['title' => ['id' => 'IT Support', 'en' => 'IT Support'], 'url' => 'https://helpdesk.telkomuniversity.ac.id', 'location' => 'top'],
-            ['title' => ['id' => 'Portal SSO', 'en' => 'SSO Portal'], 'url' => $setting->sso_login_url, 'location' => 'top', 'is_external' => true],
-            ['title' => ['id' => 'Publikasi', 'en' => 'Publication'], 'url' => '#news', 'location' => 'top'],
+            ['title' => ['id' => 'Portal Layanan', 'en' => 'Service Portal'], 'url' => '#services', 'location' => 'top'],
+            ['title' => ['id' => 'Dokumen Publik', 'en' => 'Public Documents'], 'url' => '#documents', 'location' => 'top'],
+            ['title' => ['id' => 'Formulir', 'en' => 'Forms'], 'url' => '#downloads', 'location' => 'top'],
+            ['title' => ['id' => 'FAQ', 'en' => 'FAQ'], 'url' => '#faq', 'location' => 'top'],
+            ['title' => ['id' => 'Kontak', 'en' => 'Contact'], 'url' => '#contact', 'location' => 'top'],
         ];
         foreach ($topLinks as $index => $link) {
             NavigationLink::create(array_merge($link, ['sort' => $index]));
@@ -61,31 +68,42 @@ HTML,
         $mainMenu = [
             [
                 'title' => ['id' => 'Profil', 'en' => 'Profile'],
-                'url' => '#profile',
+                'url' => '#profil',
                 'location' => 'main',
                 'children' => [
-                    ['title' => ['id' => 'Tentang Direktorat', 'en' => 'About Directorate'], 'url' => '#about'],
-                    ['title' => ['id' => 'Struktur Organisasi', 'en' => 'Organization Structure'], 'url' => '#about'],
-                    ['title' => ['id' => 'Contact Center', 'en' => 'Contact Center'], 'url' => '/contact'],
+                    ['title' => ['id' => 'Tentang Direktorat', 'en' => 'About Directorate'], 'url' => '#profil'],
+                    ['title' => ['id' => 'Visi & Misi', 'en' => 'Vision & Mission'], 'url' => '#profil'],
+                    ['title' => ['id' => 'Struktur Organisasi', 'en' => 'Organisation Structure'], 'url' => '#profil'],
                 ],
             ],
             [
-                'title' => ['id' => 'Program', 'en' => 'Programs'],
-                'url' => '/programs',
+                'title' => ['id' => 'Layanan', 'en' => 'Services'],
+                'url' => '#services',
                 'location' => 'main',
                 'children' => [
-                    ['title' => ['id' => 'Transformasi Digital', 'en' => 'Digital Transformation'], 'url' => '/programs?type=program'],
-                    ['title' => ['id' => 'Layanan Keuangan', 'en' => 'Financial Services'], 'url' => '/programs?type=service'],
+                    ['title' => ['id' => 'Program Strategis', 'en' => 'Strategic Programmes'], 'url' => '/programs?type=program'],
+                    ['title' => ['id' => 'Layanan Operasional', 'en' => 'Operational Services'], 'url' => '/programs?type=service'],
+                    ['title' => ['id' => 'Highlight Kinerja', 'en' => 'Performance Highlights'], 'url' => '/programs?type=highlight'],
                 ],
             ],
             [
                 'title' => ['id' => 'Dokumen', 'en' => 'Documents'],
                 'url' => '#documents',
                 'location' => 'main',
+                'children' => [
+                    ['title' => ['id' => 'Repositori Dokumen', 'en' => 'Document Repository'], 'url' => '/documents'],
+                    ['title' => ['id' => 'Formulir Layanan', 'en' => 'Service Forms'], 'url' => '/documents?category=form'],
+                    ['title' => ['id' => 'Standar & SOP', 'en' => 'Standards & SOP'], 'url' => '/documents?category=service_standard'],
+                ],
             ],
             [
                 'title' => ['id' => 'Berita', 'en' => 'News'],
                 'url' => '/news',
+                'location' => 'main',
+            ],
+            [
+                'title' => ['id' => 'FAQ', 'en' => 'FAQ'],
+                'url' => '#faq',
                 'location' => 'main',
             ],
             [
@@ -112,8 +130,10 @@ HTML,
             ['title' => ['id' => 'Portal Akademik', 'en' => 'Academic Portal'], 'url' => 'https://siakad.telkomuniversity.ac.id', 'location' => 'quick'],
             ['title' => ['id' => 'SIM Keuangan', 'en' => 'Finance Information System'], 'url' => 'https://finance.telkomuniversity.ac.id', 'location' => 'quick'],
             ['title' => ['id' => 'E-Procurement', 'en' => 'E-Procurement'], 'url' => 'https://eproc.telkomuniversity.ac.id', 'location' => 'quick'],
-            ['title' => ['id' => 'Dokumen Standar', 'en' => 'Standard Documents'], 'url' => '/documents', 'location' => 'footer'],
+            ['title' => ['id' => 'Repositori Dokumen', 'en' => 'Document Repository'], 'url' => '/documents', 'location' => 'footer'],
+            ['title' => ['id' => 'Formulir Layanan', 'en' => 'Service Forms'], 'url' => '/documents?category=form', 'location' => 'footer'],
             ['title' => ['id' => 'Kebijakan Keuangan', 'en' => 'Financial Policies'], 'url' => '/documents?category=policy', 'location' => 'footer'],
+            ['title' => ['id' => 'FAQ Keuangan', 'en' => 'Finance FAQ'], 'url' => '#faq', 'location' => 'footer'],
         ] as $index => $quick) {
             NavigationLink::create(array_merge($quick, ['sort' => $index]));
         }
@@ -136,8 +156,18 @@ HTML,
             'cta_label' => ['id' => 'Hubungi Helpdesk', 'en' => 'Contact Helpdesk'],
             'cta_url' => 'https://finance.telkomuniversity.ac.id/helpdesk',
             'media_type' => 'image',
-            'media_path' => null,
+            'media_path' => 'assets/images/telu1.webp',
             'sort' => 2,
+        ]);
+        HeroSlide::create([
+            'title' => ['id' => 'Kemitraan Pembayaran Strategis', 'en' => 'Strategic Payment Partnerships'],
+            'subtitle' => ['id' => 'Kolaborasi bank nasional Tel-U', 'en' => 'Collaboration with national banks'],
+            'description' => ['id' => 'Integrasi virtual account, host-to-host, dan dashboard monitoring bersama Bank Mandiri, BNI, BJB, BSI, Finnet, serta Mitra Kasih Perkasa.', 'en' => 'Virtual accounts, host-to-host flows, and monitoring dashboards with Mandiri, BNI, BJB, BSI, Finnet, and Mitra Kasih Perkasa.'],
+            'cta_label' => ['id' => 'Lihat Kemitraan', 'en' => 'View Partnerships'],
+            'cta_url' => '#partners',
+            'media_type' => 'image',
+            'media_path' => 'assets/images/mandiri.jpg',
+            'sort' => 3,
         ]);
 
         LeadershipMessage::query()->truncate();
@@ -227,6 +257,7 @@ HTML,
 
         Announcement::query()->truncate();
         Announcement::create([
+            'slug' => Str::slug('Penutupan Buku Semester Genap'),
             'title' => ['id' => 'Penutupan Buku Semester Genap', 'en' => 'Closing of Even Semester Books'],
             'body' => ['id' => '<p>Seluruh unit dimohon mengunggah SPJ maksimal 30 Juni 2025.</p>', 'en' => '<p>All units are requested to submit expense reports by 30 June 2025.</p>'],
             'cta_label' => ['id' => 'Unduh Jadwal', 'en' => 'Download Schedule'],
@@ -238,6 +269,7 @@ HTML,
             'published_at' => Carbon::now()->subDays(5),
         ]);
         Announcement::create([
+            'slug' => Str::slug('Penyesuaian Jam Operasional Helpdesk Libur Nasional'),
             'title' => ['id' => 'Penyesuaian Jam Operasional Helpdesk Libur Nasional', 'en' => 'Helpdesk Operational Adjustment on National Holidays'],
             'body' => ['id' => '<p>Layanan helpdesk keuangan akan dialihkan ke kanal email pada 17 Agustus.</p>', 'en' => '<p>Finance helpdesk will be email-only on 17 August.</p>'],
             'cta_label' => ['id' => 'Lihat Detail', 'en' => 'See Details'],
@@ -274,6 +306,33 @@ HTML,
             'category' => 'service_standard',
             'year' => 2025,
             'published_at' => Carbon::now()->subWeeks(3),
+        ]);
+        FinancialDocument::create([
+            'title' => ['id' => 'Formulir Permohonan Pencairan Dana', 'en' => 'Fund Disbursement Request Form'],
+            'description' => ['id' => 'Form standar pencairan dana kegiatan unit kerja beserta kelengkapan dokumen.', 'en' => 'Standard fund disbursement form for unit activities with required attachments.'],
+            'document_number' => 'DKU/FRM/2025-01',
+            'category' => 'form',
+            'year' => 2025,
+            'published_at' => Carbon::now()->subWeeks(2),
+            'external_url' => 'https://finance.telkomuniversity.ac.id/form/formulir-permohonan-pencairan-dana.pdf',
+        ]);
+        FinancialDocument::create([
+            'title' => ['id' => 'Formulir Pertanggungjawaban Dana (SPJ)', 'en' => 'Expense Accountability Form'],
+            'description' => ['id' => 'Template pelaporan SPJ bulanan termasuk daftar bukti dan ringkasan realisasi.', 'en' => 'Monthly expense accountability template with supporting evidence checklist.'],
+            'document_number' => 'DKU/FRM/2025-02',
+            'category' => 'form',
+            'year' => 2025,
+            'published_at' => Carbon::now()->subWeek(),
+            'external_url' => 'https://finance.telkomuniversity.ac.id/form/formulir-pertanggungjawaban-dana.pdf',
+        ]);
+        FinancialDocument::create([
+            'title' => ['id' => 'Formulir Permintaan Layanan Helpdesk Keuangan', 'en' => 'Finance Helpdesk Service Request'],
+            'description' => ['id' => 'Digunakan untuk eskalasi isu pembayaran, verifikasi SPJ, serta konsultasi pajak.', 'en' => 'Used to escalate payment issues, SPJ verification, and tax consultation support.'],
+            'document_number' => 'DKU/FRM/2025-03',
+            'category' => 'form',
+            'year' => 2025,
+            'published_at' => Carbon::now()->subDays(4),
+            'external_url' => 'https://finance.telkomuniversity.ac.id/form/formulir-helpdesk-keuangan.pdf',
         ]);
 
         Faq::query()->truncate();

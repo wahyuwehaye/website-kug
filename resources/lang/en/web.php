@@ -31,6 +31,7 @@ return [
         'transparency' => 'Transparency & Disclosure',
         'service_standard' => 'Service Standard',
         'guideline' => 'Guideline & Procedure',
+        'form' => 'Service Forms',
     ],
     'documents_filters' => [
         'search_placeholder' => 'Search documents by title or summary...',
@@ -52,7 +53,15 @@ return [
         'title' => 'Finance Document Repository',
         'empty' => 'No documents found for this filter.',
         'download' => 'Download Document',
+        'view' => 'View Document',
+        'open_form' => 'Open Form',
+        'view_notice' => 'Documents are displayed in view-only mode. Use the administrator panel for internal downloads.',
         'external' => 'Visit link',
+        'no_preview' => 'Document preview is not available.',
+    ],
+    'downloads' => [
+        'title' => 'Standard Finance Forms',
+        'subtitle' => 'Access request, reimbursement, and operational finance forms.',
     ],
     'contact' => [
         'title' => 'Contact the Finance Directorate',
@@ -63,5 +72,14 @@ return [
         'rights' => 'Copyright © :year Telkom University. All rights reserved.',
         'quick_links' => 'Quick Links',
         'feedback' => 'Submit Feedback',
+        'privacy_policy' => 'Privacy Policy',
+        'finance_care' => 'Reach Finance Care',
+    ],
+    'document_meta' => [
+        'category' => 'Category',
+        'number' => 'Document Number',
+        'published_at' => 'Published on',
+        'effective_at' => 'Effective Date',
+        'back_to_list' => 'Back to list',
     ],
 ];

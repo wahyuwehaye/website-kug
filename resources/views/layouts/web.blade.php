@@ -6,13 +6,30 @@
     <title>{{ trim(($title ?? '') . ' | ' . ($siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title'))) }}</title>
     <meta name="description" content="{{ $metaDescription ?? $siteSetting?->getTranslation('meta_description', $activeLocale) }}">
     <meta name="keywords" content="{{ $metaKeywords ?? $siteSetting?->getTranslation('meta_keywords', $activeLocale) }}">
-    @if($siteSetting?->logo_path)
-        <link rel="icon" type="image/png" href="{{ asset('storage/'.$siteSetting->logo_path) }}">
-    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @php
         use Illuminate\Support\Str;
+
+        $resolveAsset = function (?string $path) {
+            if (! $path) {
+                return null;
+            }
+
+            if (Str::startsWith($path, ['http://', 'https://'])) {
+                return $path;
+            }
+
+            if (Str::startsWith($path, '/')) {
+                return url(ltrim($path, '/'));
+            }
+
+            if (Str::startsWith($path, 'assets/')) {
+                return asset($path);
+            }
+
+            return asset('storage/' . ltrim($path, '/'));
+        };
 
         $resolveUrl = function (?string $url) use ($activeLocale) {
             if (! $url) {
@@ -33,38 +50,47 @@
 
             return $url;
         };
+
+        $favicon = $resolveAsset($siteSetting?->dark_logo_path)
+            ?? $resolveAsset($siteSetting?->logo_path)
+            ?? asset('assets/images/kug.png');
+    @endphp
+
+    <link rel="icon" type="image/png" href="{{ $favicon }}">
     @endphp
 </head>
 <body class="min-h-screen">
-    <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-950/85 shadow-[0_18px_35px_-25px_rgba(12,17,29,0.75)] backdrop-blur-xl">
-        <div class="hidden border-b border-white/10 bg-white/5 text-xs text-slate-200 md:block">
-            <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
+    <header class="sticky top-0 z-40">
+        <div class="relative bg-slate-950/95 text-[11px] uppercase tracking-[0.32em] text-slate-100 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.8)] backdrop-blur">
+            <div class="container-shell flex flex-wrap items-center justify-between gap-4 py-3">
                 <div class="flex items-center gap-4">
-                    <span class="pill-muted">
-                        <x-ui.icon name="sparkles" class="h-3.5 w-3.5 text-amber-300" />
-                        {{ $siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Telkom University Finance Directorate' }}
-                    </span>
-                    @foreach($topNavigation as $link)
-                        <a href="{{ $resolveUrl($link->url) }}" class="hidden items-center gap-1 rounded-full px-3 py-1 text-slate-200 transition hover:bg-white/10 hover:text-white lg:flex" @if($link->is_external) target="_blank" rel="noopener noreferrer" @endif>
-                            {{ $link->getTranslation('title', $activeLocale) }}
-                        </a>
-                    @endforeach
+                    <div class="flex items-center gap-2">
+                        @php
+                            $miniLogo = $resolveAsset($siteSetting?->logo_path) ?? asset('assets/images/kug.png');
+                            $telULogo = asset('assets/images/Logo-Tel-U-glow.png');
+                        @endphp
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
+                            <img src="{{ $miniLogo }}" alt="Logo KUG" class="h-6 w-6 object-contain">
+                        </span>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5">
+                            <img src="{{ $telULogo }}" alt="Logo Telkom University" class="h-6 w-6 object-contain">
+                        </span>
+                    </div>
+                    <div class="hidden flex-col text-slate-100 md:flex">
+                        <span class="font-semibold tracking-[0.32em]">{{ Str::upper($siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Finance Directorate Telkom University') }}</span>
+                        <span class="mt-1 text-[10px] normal-case tracking-[0.2em] text-slate-400">{{ __('Transparansi • Integritas • Layanan Terintegrasi') }}</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-4">
-                    @if($siteSetting?->phone)
-                        <a href="tel:{{ $siteSetting->phone }}" class="inline-flex items-center gap-2 text-slate-200 transition hover:text-white">
-                            <x-ui.icon name="phone" class="h-4 w-4" />
-                            {{ $siteSetting->phone }}
-                        </a>
-                    @endif
-                    @if($siteSetting?->email)
-                        <a href="mailto:{{ $siteSetting->email }}" class="inline-flex items-center gap-2 text-slate-200 transition hover:text-white">
-                            <x-ui.icon name="envelope" class="h-4 w-4" />
-                            {{ $siteSetting->email }}
-                        </a>
-                    @endif
-                    <div class="inline-flex items-center gap-1 rounded-full border border-white/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-200">
-                        <span>{{ trans('web.language') }}</span>
+                <div class="flex flex-1 items-center justify-end gap-3 text-[10px] md:justify-between">
+                    <div class="hidden items-center gap-2 md:flex">
+                        @foreach($topNavigation as $link)
+                            <a href="{{ $resolveUrl($link->url) }}" class="btn-ghost" @if($link->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                {{ $link->getTranslation('title', $activeLocale) }}
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2 py-1">
+                        <span class="px-2 text-[10px] font-semibold text-slate-200">{{ trans('web.language') }}</span>
                         @foreach($availableLocales as $code => $label)
                             @php
                                 $routeName = Illuminate\Support\Facades\Route::currentRouteName();
@@ -73,7 +99,7 @@
                                 $parameters['locale'] = $code;
                                 $targetUrl = $routeName ? route($routeName, array_merge($parameters, $query)) : url($code);
                             @endphp
-                            <a href="{{ $targetUrl }}" class="rounded-full px-2 py-0.5 text-xs font-semibold transition {{ $activeLocale === $code ? 'bg-white text-slate-900' : 'text-slate-200 hover:text-white' }}">
+                            <a href="{{ $targetUrl }}" class="rounded-full px-2 py-0.5 text-[10px] font-semibold transition {{ $activeLocale === $code ? 'bg-white text-slate-900' : 'text-slate-200 hover:text-white' }}">
                                 {{ Str::upper($code) }}
                             </a>
                         @endforeach
@@ -81,110 +107,103 @@
                 </div>
             </div>
         </div>
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-5">
-            <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex items-center gap-3">
-                @if($siteSetting?->logo_path)
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 shadow-lg shadow-black/40 ring-1 ring-white/20">
-                        <img src="{{ asset('storage/'.$siteSetting->logo_path) }}" alt="Logo" class="h-10 w-10 object-contain">
+
+        <div class="bg-white shadow-sm shadow-slate-200/60">
+            <div class="container-shell flex items-center justify-between gap-6 py-4">
+                <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-red-100 bg-white shadow-[0_18px_35px_-24px_rgba(191,18,28,0.45)]">
+                            <img src="{{ $resolveAsset($siteSetting?->logo_path) ?? asset('assets/images/kug.png') }}" alt="Logo KUG" class="h-12 w-12 object-contain">
+                        </div>
+                        <div class="hidden h-16 w-px bg-slate-200 lg:block"></div>
+                        <div class="hidden items-center gap-3 lg:flex">
+                            <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-12 w-auto">
+                        </div>
                     </div>
-                @endif
-                <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-amber-200">Telkom University</p>
-                    <h1 class="text-xl font-semibold text-white">
-                        {{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}
-                    </h1>
-                    @if($tagline = $siteSetting?->getTranslation('short_description', $activeLocale))
-                        <p class="text-xs text-slate-300">{{ $tagline }}</p>
-                    @endif
-                </div>
-            </a>
-            <div class="hidden flex-1 items-center justify-end gap-8 lg:flex">
-                <nav class="glass-tile inline-flex items-center gap-2 border-white/10 bg-white/5 px-2 py-1 text-sm font-semibold text-slate-200">
+                    <div class="flex flex-col">
+                        <p class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</p>
+                        <h1 class="text-xl font-semibold text-slate-900">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h1>
+                        @if($strapline = $siteSetting?->getTranslation('short_description', $activeLocale))
+                            <p class="text-xs text-slate-500">{{ $strapline }}</p>
+                        @endif
+                    </div>
+                </a>
+                <nav class="hidden items-center gap-1 text-sm font-semibold text-slate-700 lg:flex">
                     @foreach($mainNavigation as $item)
-                        <div class="group relative">
-                            <a href="{{ $resolveUrl($item->url) }}" class="inline-flex items-center gap-2 rounded-full px-4 py-2 transition hover:bg-white/10 hover:text-white" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                        <div class="relative" data-nav-item>
+                            <a href="{{ $resolveUrl($item->url) }}" class="inline-flex items-center gap-2 rounded-full px-5 py-3 transition hover:bg-red-50 hover:text-red-600" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
                                 <span>{{ $item->getTranslation('title', $activeLocale) }}</span>
                                 @if($item->children->isNotEmpty())
-                                    <x-ui.icon name="arrow-right" class="h-3 w-3 rotate-90 text-slate-400 transition group-hover:text-amber-200" />
+                                    <x-ui.icon name="arrow-right" class="h-3 w-3 rotate-90 text-slate-400 transition" />
                                 @endif
                             </a>
                             @if($item->children->isNotEmpty())
-                                <div class="absolute left-1/2 top-[calc(100%+0.75rem)] z-40 hidden w-max -translate-x-1/2 group-hover:block">
-                                    <div class="glass-tile min-w-[240px] border-white/10 bg-slate-950/95 p-4">
-                                        <div class="space-y-1">
-                                            @foreach($item->children as $child)
-                                                <a href="{{ $resolveUrl($child->url) }}" class="flex items-start gap-3 rounded-2xl px-3 py-2 text-sm text-slate-200 transition hover:bg-white/5 hover:text-white" @if($child->is_external) target="_blank" rel="noopener noreferrer" @endif>
-                                                    <span class="mt-1 block h-1.5 w-1.5 rounded-full bg-amber-300"></span>
-                                                    <span>{{ $child->getTranslation('title', $activeLocale) }}</span>
-                                                </a>
-                                            @endforeach
-                                        </div>
+                                <div class="pointer-events-none absolute left-1/2 top-[calc(100%+0.75rem)] z-30 w-[320px] -translate-x-1/2 rounded-3xl border border-slate-100 bg-white p-5 opacity-0 shadow-[0_25px_60px_-35px_rgba(15,23,42,0.4)] transition" data-nav-menu>
+                                    <div class="grid gap-2">
+                                        @foreach($item->children as $child)
+                                            <a href="{{ $resolveUrl($child->url) }}" class="flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-red-50 hover:text-red-600" @if($child->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                                <div class="space-y-1">
+                                                    <p class="font-semibold">{{ $child->getTranslation('title', $activeLocale) }}</p>
+                                                    @if($child->description ?? false)
+                                                        <p class="text-xs text-slate-400">{{ $child->description }}</p>
+                                                    @endif
+                                                </div>
+                                            </a>
+                                        @endforeach
                                     </div>
                                 </div>
                             @endif
                         </div>
                     @endforeach
                 </nav>
-                <div class="flex items-center gap-3 text-sm">
-                    @if($siteSetting?->email)
-                        <a href="mailto:{{ $siteSetting->email }}" class="inline-flex items-center gap-2 text-slate-200 transition hover:text-white">
-                            <x-ui.icon name="envelope" class="h-5 w-5" />
-                            {{ $siteSetting->email }}
-                        </a>
-                    @endif
-                    @if($siteSetting?->hotline)
-                        <span class="inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
-                            <x-ui.icon name="phone" class="h-4 w-4" />
-                            {{ $siteSetting->hotline }}
-                        </span>
-                    @endif
-                </div>
+                <button id="mobile-menu-toggle" type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm lg:hidden">
+                    <svg class="h-6 w-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5M3.75 12h16.5M3.75 18.75h16.5" />
+                    </svg>
+                </button>
             </div>
-            <button id="mobile-menu-toggle" type="button" class="lg:hidden">
-                <svg class="h-7 w-7 text-slate-200" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5M3.75 12h16.5M3.75 18.75h16.5" />
-                </svg>
-            </button>
         </div>
-        <div id="mobile-menu" class="mx-4 mb-4 hidden flex-col gap-3 rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-sm text-slate-200 shadow-xl shadow-black/40 lg:hidden">
+
+        <div id="mobile-menu" class="container-shell mb-4 hidden flex-col gap-3 rounded-3xl border border-slate-100 bg-white px-4 py-4 text-sm text-slate-700 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.4)] lg:hidden">
             @foreach($mainNavigation as $item)
                 @php $collapseId = 'collapse-'.Str::slug($item->getTranslation('title', $activeLocale)); @endphp
-                <div class="glass-tile border-white/10 bg-white/5">
-                    <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-white" data-collapse-trigger="{{ $collapseId }}">
+                <div class="rounded-2xl border border-slate-200/80">
+                    <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left font-semibold" data-collapse-trigger="{{ $collapseId }}">
                         <span>{{ $item->getTranslation('title', $activeLocale) }}</span>
-                        <x-ui.icon name="arrow-right" class="h-4 w-4 transition text-slate-300" data-collapse-icon />
+                        <x-ui.icon name="arrow-right" class="h-4 w-4 text-slate-400 transition" data-collapse-icon />
                     </button>
-                    <div id="{{ $collapseId }}" class="hidden border-t border-white/10 bg-white/5">
+                    <div id="{{ $collapseId }}" class="hidden border-t border-slate-200 bg-slate-50" data-collapse-target>
                         @if($item->children->isNotEmpty())
                             <div class="space-y-1 p-3">
                                 @foreach($item->children as $child)
-                                    <a href="{{ $resolveUrl($child->url) }}" class="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-slate-200 transition hover:bg-white/10 hover:text-white" @if($child->is_external) target="_blank" rel="noopener noreferrer" @endif>
-                                        <x-ui.icon name="arrow-right" class="h-3 w-3 -rotate-45 text-amber-300" />
+                                    <a href="{{ $resolveUrl($child->url) }}" class="flex items-center gap-2 rounded-2xl px-3 py-2 text-slate-600 transition hover:bg-red-50 hover:text-red-600" @if($child->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                        <x-ui.icon name="arrow-right" class="h-3 w-3 -rotate-45 text-red-500" />
                                         <span>{{ $child->getTranslation('title', $activeLocale) }}</span>
                                     </a>
                                 @endforeach
                             </div>
                         @else
-                            <a href="{{ $resolveUrl($item->url) }}" class="block px-4 py-3 text-sm text-slate-200 transition hover:bg-white/10 hover:text-white" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                            <a href="{{ $resolveUrl($item->url) }}" class="block px-4 py-3 text-slate-600 transition hover:bg-red-50 hover:text-red-600" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
                                 {{ trans('web.view_all') }}
                             </a>
                         @endif
                     </div>
                 </div>
             @endforeach
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 text-xs">
                 @if($siteSetting?->facebook_url)
-                    <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs text-slate-200">
+                    <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-slate-600">
                         <x-ui.icon name="globe-alt" class="h-4 w-4" /> FB
                     </a>
                 @endif
                 @if($siteSetting?->instagram_url)
-                    <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs text-slate-200">
+                    <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-slate-600">
                         <x-ui.icon name="sparkles" class="h-4 w-4" /> IG
                     </a>
                 @endif
                 @if($siteSetting?->linkedin_url)
-                    <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs text-slate-200">
+                    <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-slate-600">
                         <x-ui.icon name="link" class="h-4 w-4" /> IN
                     </a>
                 @endif
@@ -192,109 +211,129 @@
         </div>
     </header>
 
-    <main class="relative">
+    <main>
         @yield('content')
     </main>
 
-    <footer class="mt-20 border-t border-white/10 bg-slate-950/80 text-slate-200">
-        <div class="section-shell grid gap-10 md:grid-cols-3">
+    <footer class="mt-20 bg-white shadow-inner shadow-slate-200/50">
+        <div class="container-shell grid gap-10 py-12 md:grid-cols-3">
             <div class="space-y-4">
                 <div class="flex items-center gap-3">
                     @if($siteSetting?->logo_path)
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-                            <img src="{{ asset('storage/'.$siteSetting->logo_path) }}" alt="Logo" class="h-10 w-10 object-contain">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-red-100 bg-white">
+                            <img src="{{ $resolveAsset($siteSetting->logo_path) }}" alt="Logo" class="h-10 w-10 object-contain">
                         </div>
                     @endif
                     <div>
-                        <h3 class="text-lg font-semibold text-white">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h3>
+                        <h3 class="text-lg font-semibold text-slate-900">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h3>
                         @if($siteSetting?->getTranslation('short_description', $activeLocale))
-                            <p class="text-xs text-slate-400">{{ $siteSetting->getTranslation('short_description', $activeLocale) }}</p>
+                            <p class="text-xs text-slate-500">{{ $siteSetting->getTranslation('short_description', $activeLocale) }}</p>
                         @endif
                     </div>
                 </div>
-                <div class="space-y-3 text-sm">
+                <div class="space-y-2 text-sm text-slate-600">
                     @if($siteSetting?->getTranslation('address', $activeLocale))
                         <p class="flex items-start gap-2">
-                            <x-ui.icon name="map-pin" class="mt-0.5 h-5 w-5 text-amber-200" />
+                            <x-ui.icon name="map-pin" class="mt-1 h-4 w-4 text-red-500" />
                             <span>{{ $siteSetting->getTranslation('address', $activeLocale) }}</span>
                         </p>
                     @endif
                     @if($siteSetting?->phone)
-                        <p class="flex items-center gap-2"><x-ui.icon name="phone" class="h-5 w-5 text-amber-200" /><span>{{ $siteSetting->phone }}</span></p>
+                        <p class="flex items-center gap-2"><x-ui.icon name="phone" class="h-4 w-4 text-red-500" /><span>{{ $siteSetting->phone }}</span></p>
                     @endif
                     @if($siteSetting?->email)
-                        <p class="flex items-center gap-2"><x-ui.icon name="envelope" class="h-5 w-5 text-amber-200" /><span>{{ $siteSetting->email }}</span></p>
+                        <p class="flex items-center gap-2"><x-ui.icon name="envelope" class="h-4 w-4 text-red-500" /><span>{{ $siteSetting->email }}</span></p>
                     @endif
                 </div>
                 <div class="flex items-center gap-3">
                     @if($siteSetting?->facebook_url)
-                        <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-200 transition hover:bg-white hover:text-slate-900">FB</a>
+                        <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">FB</a>
                     @endif
                     @if($siteSetting?->instagram_url)
-                        <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-200 transition hover:bg-white hover:text-slate-900">IG</a>
+                        <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">IG</a>
                     @endif
                     @if($siteSetting?->linkedin_url)
-                        <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-200 transition hover:bg-white hover:text-slate-900">IN</a>
+                        <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">IN</a>
                     @endif
                     @if($siteSetting?->youtube_url)
-                        <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-200 transition hover:bg-white hover:text-slate-900">YT</a>
+                        <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">YT</a>
                     @endif
                 </div>
             </div>
             <div>
-                <h3 class="text-lg font-semibold text-white">{{ trans('web.footer.quick_links') }}</h3>
-                <div class="mt-4 grid gap-2 text-sm">
+                <h3 class="text-lg font-semibold text-slate-900">{{ trans('web.footer.quick_links') }}</h3>
+                <div class="mt-4 grid gap-2 text-sm text-slate-600">
                     @foreach($quickLinks as $link)
-                        <a href="{{ $resolveUrl($link->url) }}" class="text-slate-300 transition hover:text-white" @if($link->is_external) target="_blank" rel="noopener" @endif>
+                        <a href="{{ $resolveUrl($link->url) }}" class="hover:text-red-600" @if($link->is_external) target="_blank" rel="noopener" @endif>
                             {{ $link->getTranslation('title', $activeLocale) }}
                         </a>
                     @endforeach
                 </div>
             </div>
             <div>
-                <h3 class="text-lg font-semibold text-white">{{ trans('web.feedback') }}</h3>
-                <p class="mt-4 text-sm text-slate-300">{{ trans('web.newsletter_cta') }}</p>
+                <h3 class="text-lg font-semibold text-slate-900">{{ trans('web.feedback') }}</h3>
+                <p class="mt-4 text-sm text-slate-600">{{ trans('web.newsletter_cta') }}</p>
                 <form class="mt-4 flex w-full flex-col gap-3">
-                    <input type="email" class="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-slate-400 focus:border-amber-300 focus:outline-none" placeholder="{{ trans('web.newsletter_placeholder') }}" />
-                    <button type="submit" class="rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300">{{ trans('web.newsletter_submit') }}</button>
+                    <input type="email" class="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:border-red-400 focus:outline-none" placeholder="{{ trans('web.newsletter_placeholder') }}" />
+                    <button type="submit" class="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-500">{{ trans('web.newsletter_submit') }}</button>
                 </form>
                 @if($siteSetting?->feedback_url)
-                    <a href="{{ $siteSetting->feedback_url }}" target="_blank" rel="noopener" class="mt-3 inline-block text-sm font-semibold text-amber-200 transition hover:text-amber-100">
+                    <a href="{{ $siteSetting->feedback_url }}" target="_blank" rel="noopener" class="mt-3 inline-block text-sm font-semibold text-red-600 hover:text-red-500">
                         {{ trans('web.footer.feedback') }}
                     </a>
                 @endif
             </div>
         </div>
-        <div class="border-t border-white/10 py-4 text-center text-xs text-slate-500">
-            {{ str_replace(':year', now()->year, trans('web.footer.rights')) }}
+        <div class="border-t border-slate-200/70 bg-slate-950/90 py-6">
+            <div class="container-shell flex flex-col gap-3 text-center text-xs text-slate-300 sm:flex-row sm:items-center sm:justify-between">
+                <p>&copy; {{ now()->year }} {{ $siteSetting?->getTranslation('name', $activeLocale) ?? 'Finance Directorate Telkom University' }}. {{ __('All rights reserved.') }}</p>
+                <div class="flex justify-center gap-4">
+                    @if($siteSetting?->feedback_url)
+                        <a href="{{ $siteSetting->feedback_url }}" class="transition hover:text-amber-200" target="_blank" rel="noopener">{{ trans('web.footer.finance_care') }}</a>
+                    @endif
+                    <a href="{{ $siteSetting?->privacy_url ?? '#' }}" class="transition hover:text-amber-200">{{ trans('web.footer.privacy_policy') }}</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script>
-        const mobileToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <button type="button" class="chatbot-floating-button" data-chatbot-toggle>
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12c0 6.075 4.925 11 11 11 1.093 0 2.151-.155 3.158-.447a1.125 1.125 0 01.944.124l2.602 1.56a.563.563 0 00.84-.49l-.001-2.807a1.125 1.125 0 01.318-.783A10.96 10.96 0 0022.75 12c0-6.075-4.925-11-11-11s-11 4.925-11 11z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9.75h.008v.008H8.25V9.75zm7.5 0h.008v.008h-.008V9.75zm-7.5 4.5h7.5" />
+        </svg>
+    </button>
 
-        mobileToggle?.addEventListener('click', () => {
-            mobileMenu?.classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('[data-collapse-trigger]').forEach((trigger) => {
-            trigger.addEventListener('click', () => {
-                const targetId = trigger.getAttribute('data-collapse-trigger');
-                const target = document.getElementById(targetId);
-                const icon = trigger.querySelector('[data-collapse-icon]');
-
-                if (!target) return;
-
-                const willOpen = target.classList.contains('hidden');
-                target.classList.toggle('hidden');
-                if (willOpen) {
-                    icon?.classList.add('rotate-90');
-                } else {
-                    icon?.classList.remove('rotate-90');
-                }
-            });
-        });
-    </script>
+    <div class="chatbot-panel hidden" data-chatbot-panel>
+        <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-red-500">{{ __('Asisten Keuangan') }}</p>
+                <p class="text-sm font-semibold text-slate-900">Finance Care Assistant</p>
+            </div>
+            <button type="button" class="rounded-full border border-slate-200 p-2 text-slate-500 hover:text-red-500" data-chatbot-toggle>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="space-y-3 border-b border-slate-200 px-5 py-4 text-xs text-slate-500">
+            <p>{{ __('Pilih salah satu topik atau tulis pertanyaan Anda:') }}</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="btn-ghost !bg-red-50 !text-red-600" data-chatbot-quick="layanan">{{ __('Layanan Dana') }}</button>
+                <button type="button" class="btn-ghost" data-chatbot-quick="dokumen">{{ __('Dokumen Publik') }}</button>
+                <button type="button" class="btn-ghost" data-chatbot-quick="kontak">{{ __('Kontak & Hotline') }}</button>
+                <button type="button" class="btn-ghost" data-chatbot-quick="faq">{{ __('FAQ Keuangan') }}</button>
+            </div>
+        </div>
+        <div class="chatbot-messages" data-chatbot-messages></div>
+        <form class="flex items-center gap-3 border-t border-slate-200 bg-slate-50 px-5 py-4" data-chatbot-form>
+            <input type="text" class="flex-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 focus:border-red-400 focus:outline-none" placeholder="{{ __('Tulis pesan Anda di sini...') }}" data-chatbot-input>
+            <button type="submit" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white shadow">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25l13.5 6.75-13.5 6.75v-5.25l9-1.5-9-1.5z" />
+                </svg>
+            </button>
+        </form>
+    </div>
 </body>
 </html>

@@ -20,6 +20,14 @@
             <div class="grid gap-8 lg:grid-cols-[1.05fr,0.95fr]">
                 <div class="flex flex-col justify-between rounded-[28px] border border-white/10 bg-white/10 p-10 shadow-2xl backdrop-blur-xl">
                     <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
+                                <img src="{{ asset('assets/images/kug.png') }}" alt="Direktorat Keuangan" class="h-10 w-10 object-contain">
+                            </span>
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">
+                                <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-9 w-9 object-contain">
+                            </span>
+                        </div>
                         <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.4em] text-amber-200">
                             <span class="h-2 w-2 rounded-full bg-amber-400"></span>
                             Finance Directorate

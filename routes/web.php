@@ -22,6 +22,7 @@ Route::middleware('web')->group(function () {
         Route::get('news/{newsPost:slug}', [NewsController::class, 'show'])->name('news.show');
 
         Route::get('documents', [FinancialDocumentController::class, 'index'])->name('documents.index');
+        Route::get('documents/{document:slug}', [FinancialDocumentController::class, 'show'])->name('documents.show');
         Route::get('documents/{document:slug}/download', [FinancialDocumentController::class, 'download'])->name('documents.download');
 
         Route::get('contact', ContactController::class)->name('contact');

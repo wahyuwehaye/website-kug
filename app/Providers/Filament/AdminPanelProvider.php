@@ -27,13 +27,15 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('Direktorat Keuangan')
+            ->brandName('Direktorat Keuangan Tel-U')
+            ->brandLogo(asset('assets/images/kug.png'))
+            ->brandLogoHeight('2.25rem')
             ->login(AdminLogin::class)
             ->font('Plus Jakarta Sans')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#BF121C'),
             ])
-            ->favicon(asset('favicon.ico'))
+            ->favicon(asset('assets/images/kug.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

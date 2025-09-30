@@ -19,6 +19,7 @@ class FinancialDocumentController extends Controller
             'transparency' => trans('web.document_categories.transparency'),
             'service_standard' => trans('web.document_categories.service_standard'),
             'guideline' => trans('web.document_categories.guideline'),
+            'form' => trans('web.document_categories.form'),
         ];
 
         $query = FinancialDocument::query()->orderByDesc('published_at')->orderByDesc('year');
@@ -56,6 +57,18 @@ class FinancialDocumentController extends Controller
             'years' => $years,
             'activeYear' => $year,
             'search' => $search,
+        ]);
+    }
+
+    public function show(string $locale, FinancialDocument $document): View
+    {
+        $fileUrl = $document->file_path && Storage::disk('public')->exists($document->file_path)
+            ? Storage::disk('public')->url($document->file_path)
+            : null;
+
+        return view('web.documents.show', [
+            'document' => $document,
+            'fileUrl' => $fileUrl,
         ]);
     }
 

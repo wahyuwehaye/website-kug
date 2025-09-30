@@ -47,11 +47,9 @@
                             @endif
                         </dl>
                         <div class="flex flex-wrap gap-2">
-                            @if($document->file_path)
-                                <a href="{{ route('documents.download', ['locale' => $activeLocale, 'document' => $document]) }}" class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-amber-300">
-                                    {{ trans('web.documents_list.download') }}
-                                </a>
-                            @endif
+                            <a href="{{ route('documents.show', ['locale' => $activeLocale, 'document' => $document]) }}" class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-amber-300">
+                                {{ trans('web.documents_list.view') }}
+                            </a>
                             @if($document->external_url)
                                 <a href="{{ $document->external_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-slate-200 transition hover:border-white">
                                     {{ trans('web.documents_list.external') }}

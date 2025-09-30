@@ -31,6 +31,7 @@ return [
         'transparency' => 'Transparansi & Keterbukaan',
         'service_standard' => 'Standar Layanan',
         'guideline' => 'Panduan & Prosedur',
+        'form' => 'Formulir Layanan',
     ],
     'documents_filters' => [
         'search_placeholder' => 'Cari judul atau ringkasan dokumen...',
@@ -52,7 +53,15 @@ return [
         'title' => 'Repositori Dokumen Keuangan',
         'empty' => 'Belum ada dokumen pada kategori ini.',
         'download' => 'Unduh Dokumen',
+        'view' => 'Lihat Dokumen',
+        'open_form' => 'Buka Formulir',
+        'view_notice' => 'Dokumen ditampilkan dalam mode view-only. Gunakan panel admin untuk unduhan internal.',
         'external' => 'Kunjungi tautan',
+        'no_preview' => 'Pratinjau dokumen belum tersedia.',
+    ],
+    'downloads' => [
+        'title' => 'Formulir Standar Direktorat Keuangan',
+        'subtitle' => 'Akses formulir pengajuan dana, layanan pembayaran, dan referensi keuangan lainnya.',
     ],
     'contact' => [
         'title' => 'Hubungi Direktorat Keuangan',
@@ -63,5 +72,14 @@ return [
         'rights' => 'Hak Cipta © :year Telkom University. Seluruh hak dilindungi.',
         'quick_links' => 'Tautan Cepat',
         'feedback' => 'Kirim Feedback',
+        'privacy_policy' => 'Kebijakan Privasi',
+        'finance_care' => 'Hubungi Finance Care',
+    ],
+    'document_meta' => [
+        'category' => 'Kategori',
+        'number' => 'Nomor Dokumen',
+        'published_at' => 'Tanggal Publikasi',
+        'effective_at' => 'Tanggal Efektif',
+        'back_to_list' => 'Kembali ke daftar',
     ],
 ];
