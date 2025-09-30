@@ -258,24 +258,16 @@
                 <p>&copy; {{ now()->year }} {{ $siteSetting?->getTranslation('name', $activeLocale) ?? 'Finance Directorate Telkom University' }}. {{ __('All rights reserved.') }}</p>
                 <div class="site-footer__socials">
                     @if($siteSetting?->facebook_url)
-                        <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
-                            <x-ui.icon name="globe-alt" class="h-4 w-4" />
-                        </a>
+                        <x-ui.social-icon type="facebook" :href="$siteSetting->facebook_url" label="Facebook" />
                     @endif
                     @if($siteSetting?->instagram_url)
-                        <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
-                            <x-ui.icon name="sparkles" class="h-4 w-4" />
-                        </a>
+                        <x-ui.social-icon type="instagram" :href="$siteSetting->instagram_url" label="Instagram" />
                     @endif
                     @if($siteSetting?->linkedin_url)
-                        <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">
-                            <x-ui.icon name="link" class="h-4 w-4" />
-                        </a>
+                        <x-ui.social-icon type="linkedin" :href="$siteSetting->linkedin_url" label="LinkedIn" />
                     @endif
                     @if($siteSetting?->youtube_url)
-                        <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">
-                            <x-ui.icon name="play" class="h-4 w-4" />
-                        </a>
+                        <x-ui.social-icon type="youtube" :href="$siteSetting->youtube_url" label="YouTube" />
                     @endif
                 </div>
             </div>
