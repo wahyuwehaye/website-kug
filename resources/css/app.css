@@ -157,7 +157,7 @@
     }
 
     .partner-item {
-        @apply flex h-28 w-64 items-center justify-center rounded-3xl border border-slate-200/80 bg-white px-8 shadow-[0_20px_52px_-32px_rgba(15,23,42,0.35)];
+        @apply flex h-32 w-72 items-center justify-center rounded-3xl border border-slate-200/80 bg-white px-10 shadow-[0_20px_52px_-28px_rgba(15,23,42,0.4)] md:h-36 md:w-80 md:px-12;
     }
 
     .faq-accordion {

@@ -35,7 +35,7 @@ function initBackToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     toggleVisibility();
 }
 
