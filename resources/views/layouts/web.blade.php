@@ -206,83 +206,77 @@
         @yield('content')
     </main>
 
-    <footer class="mt-20 bg-white shadow-inner shadow-slate-200/50">
-        <div class="container-shell grid gap-10 py-12 md:grid-cols-3">
-            <div class="space-y-4">
-                <div class="flex items-center gap-3">
-                    @if($siteSetting?->logo_path)
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-red-100 bg-white">
-                            <img src="{{ $resolveAsset($siteSetting->logo_path) }}" alt="Logo" class="h-10 w-10 object-contain">
-                        </div>
+    <footer class="site-footer">
+        <div class="site-footer__top">
+            <div class="site-footer__grid">
+                <div class="site-footer__brand">
+                    <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" loading="lazy">
+                    <h3 class="text-lg font-semibold text-white">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h3>
+                    @if($siteSetting?->getTranslation('short_description', $activeLocale))
+                        <p>{{ $siteSetting->getTranslation('short_description', $activeLocale) }}</p>
                     @endif
-                    <div>
-                        <h3 class="text-lg font-semibold text-slate-900">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h3>
-                        @if($siteSetting?->getTranslation('short_description', $activeLocale))
-                            <p class="text-xs text-slate-500">{{ $siteSetting->getTranslation('short_description', $activeLocale) }}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="space-y-2 text-sm text-slate-600">
                     @if($siteSetting?->getTranslation('address', $activeLocale))
-                        <p class="flex items-start gap-2">
-                            <x-ui.icon name="map-pin" class="mt-1 h-4 w-4 text-red-500" />
+                        <p class="flex items-start gap-2 text-sm text-slate-400">
+                            <x-ui.icon name="map-pin" class="mt-1 h-4 w-4 text-red-400" />
                             <span>{{ $siteSetting->getTranslation('address', $activeLocale) }}</span>
                         </p>
                     @endif
-                    @if($siteSetting?->phone)
-                        <p class="flex items-center gap-2"><x-ui.icon name="phone" class="h-4 w-4 text-red-500" /><span>{{ $siteSetting->phone }}</span></p>
-                    @endif
-                    @if($siteSetting?->email)
-                        <p class="flex items-center gap-2"><x-ui.icon name="envelope" class="h-4 w-4 text-red-500" /><span>{{ $siteSetting->email }}</span></p>
-                    @endif
                 </div>
-                <div class="flex items-center gap-3">
-                    @if($siteSetting?->facebook_url)
-                        <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">FB</a>
-                    @endif
-                    @if($siteSetting?->instagram_url)
-                        <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">IG</a>
-                    @endif
-                    @if($siteSetting?->linkedin_url)
-                        <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">IN</a>
-                    @endif
-                    @if($siteSetting?->youtube_url)
-                        <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-red-600 hover:text-white">YT</a>
-                    @endif
+                <div>
+                    <p class="site-footer__heading">{{ trans('web.footer.quick_links') }}</p>
+                    <div class="site-footer__links">
+                        @foreach($quickLinks as $link)
+                            <a href="{{ $resolveUrl($link->url) }}" @if($link->is_external) target="_blank" rel="noopener" @endif>
+                                {{ $link->getTranslation('title', $activeLocale) }}
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-slate-900">{{ trans('web.footer.quick_links') }}</h3>
-                <div class="mt-4 grid gap-2 text-sm text-slate-600">
-                    @foreach($quickLinks as $link)
-                        <a href="{{ $resolveUrl($link->url) }}" class="hover:text-red-600" @if($link->is_external) target="_blank" rel="noopener" @endif>
-                            {{ $link->getTranslation('title', $activeLocale) }}
-                        </a>
-                    @endforeach
+                <div>
+                    <p class="site-footer__heading">{{ __('Kontak') }}</p>
+                    <div class="site-footer__contact">
+                        @if($siteSetting?->phone)
+                            <p>{{ $siteSetting->phone }}</p>
+                        @endif
+                        @if($siteSetting?->whatsapp)
+                            <p>{{ $siteSetting->whatsapp }}</p>
+                        @endif
+                        @if($siteSetting?->email)
+                            <p>{{ $siteSetting->email }}</p>
+                        @endif
+                        @if($siteSetting?->feedback_url)
+                            <a href="{{ $siteSetting->feedback_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-300 hover:text-white">
+                                <x-ui.icon name="link" class="h-4 w-4" /> {{ trans('web.footer.feedback') }}
+                            </a>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-slate-900">{{ trans('web.feedback') }}</h3>
-                <p class="mt-4 text-sm text-slate-600">{{ trans('web.newsletter_cta') }}</p>
-                <form class="mt-4 flex w-full flex-col gap-3">
-                    <input type="email" class="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:border-red-400 focus:outline-none" placeholder="{{ trans('web.newsletter_placeholder') }}" />
-                    <button type="submit" class="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-500">{{ trans('web.newsletter_submit') }}</button>
-                </form>
-                @if($siteSetting?->feedback_url)
-                    <a href="{{ $siteSetting->feedback_url }}" target="_blank" rel="noopener" class="mt-3 inline-block text-sm font-semibold text-red-600 hover:text-red-500">
-                        {{ trans('web.footer.feedback') }}
-                    </a>
-                @endif
             </div>
         </div>
-        <div class="border-t border-slate-200/70 bg-slate-950/90 py-6">
-            <div class="container-shell flex flex-col gap-3 text-center text-xs text-slate-300 sm:flex-row sm:items-center sm:justify-between">
+        <div class="site-footer__bottom">
+            <div class="site-footer__bottom-inner">
                 <p>&copy; {{ now()->year }} {{ $siteSetting?->getTranslation('name', $activeLocale) ?? 'Finance Directorate Telkom University' }}. {{ __('All rights reserved.') }}</p>
-                <div class="flex justify-center gap-4">
-                    @if($siteSetting?->feedback_url)
-                        <a href="{{ $siteSetting->feedback_url }}" class="transition hover:text-amber-200" target="_blank" rel="noopener">{{ trans('web.footer.finance_care') }}</a>
+                <div class="site-footer__socials">
+                    @if($siteSetting?->facebook_url)
+                        <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+                            <x-ui.icon name="globe-alt" class="h-4 w-4" />
+                        </a>
                     @endif
-                    <a href="{{ $siteSetting?->privacy_url ?? '#' }}" class="transition hover:text-amber-200">{{ trans('web.footer.privacy_policy') }}</a>
+                    @if($siteSetting?->instagram_url)
+                        <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+                            <x-ui.icon name="sparkles" class="h-4 w-4" />
+                        </a>
+                    @endif
+                    @if($siteSetting?->linkedin_url)
+                        <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <x-ui.icon name="link" class="h-4 w-4" />
+                        </a>
+                    @endif
+                    @if($siteSetting?->youtube_url)
+                        <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">
+                            <x-ui.icon name="play" class="h-4 w-4" />
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -268,6 +268,112 @@
     .map-popup__cta {
         @apply block text-xs font-semibold uppercase tracking-[0.3em];
     }
+
+    .page-hero {
+        @apply relative overflow-hidden rounded-[32px] border border-slate-100 bg-white px-10 py-12 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.7)];
+    }
+
+    .page-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 10% 20%, rgba(191, 18, 28, 0.12), transparent 55%),
+            radial-gradient(circle at 80% 0%, rgba(14, 116, 144, 0.1), transparent 55%),
+            linear-gradient(120deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.7));
+        z-index: 0;
+    }
+
+    .page-hero__content {
+        @apply relative z-10 flex flex-col gap-5 text-slate-800;
+    }
+
+    .page-hero__title {
+        @apply text-3xl font-semibold text-slate-900 md:text-[2.1rem];
+    }
+
+    .page-hero__subtitle {
+        @apply text-sm text-slate-500 md:max-w-2xl;
+    }
+
+    .page-hero__actions {
+        @apply relative z-10 mt-6 flex flex-wrap items-center gap-3;
+    }
+
+    .card-elevated {
+        @apply rounded-3xl border border-slate-100 bg-white/95 p-6 shadow-[0_35px_80px_-50px_rgba(15,23,42,0.5)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_40px_90px_-45px_rgba(191,18,28,0.3)];
+    }
+
+    .card-elevated--muted {
+        @apply border border-slate-200 bg-slate-50;
+    }
+
+    .filter-shell {
+        @apply relative z-10 flex flex-wrap items-center gap-3 rounded-full border border-slate-200 bg-white/90 px-4 py-2 shadow;
+    }
+
+    .filter-input {
+        @apply rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 focus:border-red-400 focus:outline-none;
+    }
+
+    .filter-button {
+        @apply rounded-full bg-gradient-to-r from-red-600 to-amber-400 px-4 py-2 text-sm font-semibold text-white shadow hover:from-red-500 hover:to-amber-300;
+    }
+
+    .site-footer {
+        @apply mt-20 bg-slate-900 text-slate-200;
+    }
+
+    .site-footer__top {
+        @apply border-t border-slate-800/80;
+    }
+
+    .site-footer__grid {
+        @apply container-shell grid gap-10 py-12 md:grid-cols-[1.4fr,1fr,1fr];
+    }
+
+    .site-footer__brand {
+        @apply space-y-4;
+    }
+
+    .site-footer__brand img {
+        @apply h-12 w-auto;
+    }
+
+    .site-footer__brand p {
+        @apply text-sm text-slate-400;
+    }
+
+    .site-footer__heading {
+        @apply text-base font-semibold uppercase tracking-[0.3em] text-white/80;
+    }
+
+    .site-footer__links {
+        @apply mt-4 grid gap-2 text-sm text-slate-400;
+    }
+
+    .site-footer__links a {
+        @apply transition hover:text-white;
+    }
+
+    .site-footer__contact {
+        @apply mt-4 space-y-3 text-sm text-slate-300;
+    }
+
+    .site-footer__bottom {
+        @apply border-t border-white/10 bg-slate-950/90 py-6;
+    }
+
+    .site-footer__bottom-inner {
+        @apply container-shell flex flex-col gap-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between;
+    }
+
+    .site-footer__socials {
+        @apply flex items-center gap-3;
+    }
+
+    .site-footer__socials a {
+        @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 text-slate-300 transition hover:border-red-500 hover:text-white;
+    }
 }
 
 @layer utilities {
