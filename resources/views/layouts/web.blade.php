@@ -74,9 +74,9 @@
     <header class="sticky top-0 z-40">
         <div class="relative bg-gradient-to-r from-[#BF121C] via-[#D62C3C] to-[#8F111F] text-[11px] uppercase tracking-[0.32em] text-rose-50 shadow-[0_12px_32px_-18px_rgba(127,17,28,0.65)] backdrop-blur">
             <div class="container-shell flex flex-wrap items-center justify-between gap-4 py-3">
-                <div class="flex items-center gap-3">
-                    <div class="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-2 shadow-lg shadow-red-900/20">
-                        <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-8 w-auto md:h-9" loading="lazy">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3 rounded-2xl bg-white px-4 py-2 shadow-lg shadow-red-900/20">
+                        <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-9 w-auto max-w-[220px] sm:h-10" loading="lazy">
                     </div>
                     <div class="hidden flex-col text-white md:flex">
                         <span class="font-semibold tracking-[0.32em]">{{ Str::upper($siteSetting?->getTranslation('tagline', $activeLocale) ?? 'Finance Directorate Telkom University') }}</span>
@@ -110,19 +110,16 @@
             </div>
         </div>
 
-        <div class="bg-white shadow-sm shadow-slate-200/60">
+        <div class="bg-white/95 shadow-sm shadow-slate-200/60 backdrop-blur">
             <div class="container-shell flex items-center justify-between gap-6 py-4">
-                <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex flex-1 items-center gap-4">
-                    <img src="{{ $primaryLogo }}" alt="Logo Direktorat Keuangan Telkom University" class="h-12 w-auto max-w-[220px] md:h-14" loading="lazy">
-                    <div class="flex flex-col">
-                        <p class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</p>
-                        <h1 class="text-xl font-semibold text-slate-900">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</h1>
-                        @if($strapline = $siteSetting?->getTranslation('short_description', $activeLocale))
-                            <p class="text-xs text-slate-500">{{ $strapline }}</p>
-                        @endif
-                    </div>
+                <a href="{{ route('home', ['locale' => $activeLocale]) }}" class="flex flex-col gap-1 text-left">
+                    <span class="text-xs font-semibold uppercase tracking-[0.4em] text-red-600">Telkom University</span>
+                    <span class="text-xl font-semibold text-slate-900 md:text-2xl">{{ $siteSetting?->getTranslation('name', $activeLocale) ?? trans('web.site_title') }}</span>
+                    @if($strapline = $siteSetting?->getTranslation('short_description', $activeLocale))
+                        <span class="text-xs text-slate-500 md:text-sm">{{ $strapline }}</span>
+                    @endif
                 </a>
-                <nav class="hidden items-center gap-1 text-sm font-semibold text-slate-700 lg:flex">
+                <nav class="hidden items-center gap-2 text-sm font-semibold text-slate-700 lg:flex">
                     @foreach($mainNavigation as $item)
                         <div class="relative" data-nav-item>
                             <a href="{{ $resolveUrl($item->url) }}" class="inline-flex items-center gap-2 rounded-full px-5 py-3 transition hover:bg-red-50 hover:text-red-600" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
