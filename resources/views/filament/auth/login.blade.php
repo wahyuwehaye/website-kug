@@ -10,34 +10,34 @@
     $phone = $siteSetting?->phone ?? '0811-2162-204';
 @endphp
 
-<div class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-[#fee2e2] via-white to-[#f1f5f9] px-4 py-10 text-slate-800">
+<div class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-[#fee2e2] via-white to-[#e2f3ff] px-4 py-10 text-slate-800">
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
-        <div class="absolute -left-20 top-10 h-52 w-52 rounded-full bg-red-300/20 blur-[120px]"></div>
-        <div class="absolute bottom-0 right-[-10%] h-72 w-72 rounded-full bg-sky-200/25 blur-[150px]"></div>
+        <div class="absolute -left-24 top-6 h-72 w-72 rounded-full bg-red-200/25 blur-[140px]"></div>
+        <div class="absolute bottom-[-10%] right-[-12%] h-80 w-80 rounded-full bg-sky-200/25 blur-[160px]"></div>
     </div>
 
-    <div class="relative w-full max-w-lg">
-        <div class="rounded-[28px] border border-slate-200/70 bg-white/95 p-8 shadow-[0_28px_80px_-50px_rgba(15,23,42,0.45)] backdrop-blur-md md:p-10">
+    <div class="relative w-full max-w-2xl">
+        <div class="rounded-[32px] border border-white/70 bg-white/95 p-10 shadow-[0_38px_120px_-60px_rgba(15,23,42,0.4)] backdrop-blur-md">
             <div class="flex flex-col items-center gap-6 text-center">
-                <div class="flex items-center gap-4">
-                    <span class="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-red-50 shadow-inner">
-                        <img src="{{ asset('assets/images/kug.png') }}" alt="Direktorat Keuangan" class="h-10 w-10 object-contain">
+                <div class="flex items-center gap-5">
+                    <span class="inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white shadow-inner ring-1 ring-red-100">
+                        <img src="{{ asset('assets/images/kug.png') }}" alt="Direktorat Keuangan" class="h-12 w-12 object-contain">
                     </span>
-                    <span class="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-slate-100 shadow-inner">
-                        <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-11 w-11 object-contain">
+                    <span class="inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white shadow-inner ring-1 ring-slate-100">
+                        <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-12 w-12 object-contain">
                     </span>
                 </div>
                 <div class="space-y-3">
                     <span class="text-[11px] font-semibold uppercase tracking-[0.32em] text-red-500">Portal Administrator</span>
-                    <h1 class="text-2xl font-semibold text-slate-900 md:text-[1.85rem]">{{ $title }}</h1>
-                    <p class="text-sm text-slate-500">{{ $tagline }}</p>
+                    <h1 class="text-[2.1rem] font-semibold leading-tight text-slate-900">{{ $title }}</h1>
+                    <p class="text-base text-slate-500">{{ $tagline }}</p>
                 </div>
             </div>
 
-            <div class="mt-8">
+            <div class="mt-10">
                 {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 
-                <x-filament-panels::form id="form" wire:submit="authenticate" class="space-y-5 text-left">
+                <x-filament-panels::form id="form" wire:submit="authenticate" class="space-y-6">
                     {{ $this->form }}
 
                     <x-filament-panels::form.actions
@@ -49,9 +49,9 @@
                 {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
             </div>
 
-            <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50/90 p-4 text-xs text-slate-500 sm:text-sm">
-                <p class="font-medium text-slate-600">Butuh bantuan?</p>
-                <p class="mt-1">Hubungi Finance Care Direktorat Keuangan Tel-U.</p>
+            <div class="mt-10 rounded-3xl border border-slate-200 bg-slate-50/90 p-5 text-sm text-slate-500">
+                <p class="font-semibold text-slate-700">Bantuan Finance Care</p>
+                <p class="mt-1 text-xs text-slate-500">Tim siap mendampingi pada jam kerja.</p>
                 <div class="mt-3 flex flex-wrap items-center justify-center gap-3 font-medium text-slate-600">
                     <a href="mailto:{{ $email }}" class="hover:text-red-500">{{ $email }}</a>
                     <span class="hidden h-1 w-1 rounded-full bg-slate-300 sm:inline"></span>
