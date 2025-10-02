@@ -10,8 +10,8 @@
     $phone = $setting?->phone ?? '0811-2162-204';
 @endphp
 
-<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#fef2f2] via-white to-[#e0f2fe] px-4 py-12 text-slate-800">
-    <div class="w-full max-w-md space-y-8 rounded-3xl border border-white/60 bg-white/95 px-8 py-10 text-center shadow-[0_35px_90px_-60px_rgba(15,23,42,0.55)] backdrop-blur">
+<div class="flex min-h-screen items-center justify-center bg-[#f8fafc] px-4 py-12 text-slate-800">
+    <div class="w-full max-w-md space-y-8 rounded-3xl border border-slate-200/70 bg-white px-8 py-10 text-center">
         <div class="flex flex-col items-center gap-4">
             <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="h-10">
             <img src="{{ asset('assets/images/Logo-Tel-U-glow.png') }}" alt="Telkom University" class="h-10">
