@@ -121,8 +121,14 @@
     }
 
     .fi-simple-main {
-        @apply border border-transparent bg-transparent shadow-none backdrop-blur-none p-0 mx-0 my-0 max-w-none;
+        @apply border border-transparent bg-transparent shadow-none backdrop-blur-none p-0 mx-0 my-0;
         box-shadow: none !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+
+    .fi-simple-main > * {
+        margin: 0 !important;
     }
 
     .fi-notifications {
