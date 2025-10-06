@@ -121,7 +121,8 @@
     }
 
     .fi-simple-main {
-        @apply border border-slate-200/80 bg-white/95 shadow-[0_32px_80px_-60px_rgba(15,23,42,0.55)] backdrop-blur;
+        @apply border border-transparent bg-transparent shadow-none backdrop-blur-none p-0 mx-0 my-0 max-w-none;
+        box-shadow: none !important;
     }
 
     .fi-notifications {
