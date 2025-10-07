@@ -11,9 +11,9 @@
 @endphp
 
 <div class="flex min-h-screen items-center justify-center bg-white text-slate-800">
-    <div class="flex w-full max-w-5xl overflow-hidden rounded-[32px] border border-slate-200 shadow-[0_25px_70px_-40px_rgba(15,23,42,0.4)]">
-        <div class="hidden w-2/5 bg-cover bg-center bg-no-repeat md:block" style="background-image: linear-gradient(160deg, rgba(191,18,28,0.85), rgba(191,18,28,0.6)), url('{{ asset('assets/images/telu1.webp') }}');"></div>
-        <div class="flex w-full flex-1 flex-col items-center gap-6 px-8 py-10 text-center md:w-3/5 md:px-16">
+    <div class="flex h-[640px] w-full max-w-5xl overflow-hidden rounded-[32px] border border-slate-200 shadow-[0_25px_70px_-40px_rgba(15,23,42,0.4)]">
+        <div class="hidden h-full w-2/5 bg-cover bg-center bg-no-repeat md:block" style="background-image: linear-gradient(160deg, rgba(191,18,28,0.85), rgba(191,18,28,0.6)), url('{{ asset('assets/images/telu1.webp') }}');"></div>
+        <div class="flex h-full w-full flex-1 flex-col items-center justify-center gap-6 px-8 text-center md:w-3/5 md:px-16">
             <div class="flex flex-col items-center gap-4">
                 <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="h-12">
                 <div class="space-y-1">
