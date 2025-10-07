@@ -11,7 +11,12 @@
 @endphp
 
 <div class="dk-login">
-    <div class="dk-panel">
+    <div class="dk-login__hero">
+        <div class="dk-login__hero-logo">
+            <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Logo Direktorat Keuangan">
+        </div>
+    </div>
+    <div class="dk-login__panel">
         <div class="dk-panel-card">
             <div class="dk-header">
                 <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="dk-logo">
