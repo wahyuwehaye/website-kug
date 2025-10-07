@@ -118,6 +118,13 @@
 
     .fi-simple-layout {
         @apply bg-transparent;
+        min-height: 100vh;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .fi-simple-layout > main {
+        @apply w-full;
     }
 
     .fi-simple-main {
