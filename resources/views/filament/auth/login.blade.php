@@ -10,21 +10,19 @@
     $phone = $setting?->phone ?? '0811-2162-204';
 @endphp
 
-<div class="login-shell">
-    <div class="login-card">
-        <div class="login-illustration"></div>
-        <div class="login-panel">
-            <div class="login-header">
-                <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="h-12">
-                <div>
-                    <h1 class="text-2xl font-semibold text-slate-900">Welcome Back!</h1>
-                    <p class="text-sm text-slate-500">Masuk ke portal Direktorat Keuangan Telkom University.</p>
-                </div>
+<div class="ssr-login">
+    <div class="ssr-banner"></div>
+    <div class="ssr-panel">
+        <div class="ssr-panel-inner">
+            <div class="ssr-header">
+                <img src="{{ asset('assets/images/kug.png') }}" alt="KUG" class="ssr-logo">
+                <h1 class="ssr-title">Welcome Back!</h1>
+                <p class="ssr-subtitle">Sign in to continue to Direktorat Keuangan Telkom University.</p>
             </div>
 
             {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 
-            <x-filament-panels::form id="form" wire:submit="authenticate" class="login-form">
+            <x-filament-panels::form id="form" wire:submit="authenticate" class="ssr-form">
                 {{ $this->form }}
 
                 <x-filament-panels::form.actions
@@ -35,7 +33,7 @@
 
             {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 
-            <div class="login-footer">
+            <div class="ssr-footer">
                 <p>Finance Care — {{ $email }} · {{ $phone }}</p>
                 <p>© {{ now()->year }} Direktorat Keuangan Telkom University.</p>
             </div>
