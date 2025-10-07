@@ -156,58 +156,60 @@
         @apply text-slate-700;
     }
 
-    .ssr-login {
-        @apply grid h-screen w-full grid-cols-1 overflow-hidden bg-white text-slate-800 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)];
+    .dk-login {
+        @apply relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-[#fef6f5] via-white to-[#e9f4ff] px-5 py-10 md:px-12;
     }
 
-    .ssr-banner {
-        @apply hidden h-full w-full bg-cover bg-center bg-no-repeat md:block;
-        background-image: url('/assets/images/login-banner-ssr.webp');
+    .dk-panel {
+        @apply relative flex w-full max-w-5xl justify-end overflow-hidden rounded-[40px] border border-white/70 bg-white shadow-[0_42px_110px_-55px_rgba(15,23,42,0.35)] backdrop-blur;
     }
 
-    .ssr-panel {
-        @apply flex items-center justify-center bg-gradient-to-br from-white via-[#f8fafc] to-[#edf4ff] px-6 py-10 sm:px-12 lg:px-16;
+    .dk-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0 58% 0 0;
+        background-image: linear-gradient(135deg, rgba(191,18,28,0.92), rgba(191,18,28,0.65));
     }
 
-    .ssr-panel-inner {
-        @apply w-full max-w-sm space-y-8 rounded-[28px] border border-red-100 bg-white/95 p-10 shadow-[0_30px_85px_-50px_rgba(15,23,42,0.28)] backdrop-blur;
+    .dk-panel-card {
+        @apply relative z-10 flex w-full max-w-md flex-col items-center gap-8 px-8 py-12 text-center sm:px-10;
     }
 
-    .ssr-header {
-        @apply flex flex-col items-center gap-4 text-center;
+    .dk-header {
+        @apply flex flex-col items-center gap-4;
     }
 
-    .ssr-logo {
-        @apply h-16 w-auto;
+    .dk-logo {
+        @apply h-16 w-auto drop-shadow-[0_12px_25px_rgba(191,18,28,0.35)];
     }
 
-    .ssr-title {
-        @apply text-xl font-semibold text-slate-900;
+    .dk-title {
+        @apply text-2xl font-semibold text-slate-900;
     }
 
-    .ssr-subtitle {
-        @apply text-xs text-slate-500;
+    .dk-subtitle {
+        @apply text-sm text-slate-500;
     }
 
-    .ssr-form {
-        @apply grid gap-5 text-left;
+    .dk-form {
+        @apply grid w-full gap-5 text-left rounded-[26px] border border-red-100 bg-white/95 p-8 shadow-[0_30px_85px_-50px_rgba(15,23,42,0.25)];
     }
 
-    .ssr-form .fi-fo-field-wrp-label {
+    .dk-form .fi-fo-field-wrp-label {
         @apply text-[13px] font-semibold text-slate-600;
     }
 
-    .ssr-form .fi-input,
-    .ssr-form .fi-select-input,
-    .ssr-form .fi-textarea {
-        @apply rounded-lg border border-slate-200 bg-white text-slate-700 placeholder:text-slate-400 focus:border-red-400 focus:ring-red-200;
+    .dk-form .fi-input,
+    .dk-form .fi-select-input,
+    .dk-form .fi-textarea {
+        @apply rounded-lg border border-slate-200 bg-slate-50 text-slate-700 placeholder:text-slate-400 focus:border-red-400 focus:ring-red-200;
     }
 
-    .ssr-form .fi-button.fi-color-primary:not([disabled]) {
-        @apply rounded-lg bg-[#f15858] py-3 text-sm font-semibold text-white shadow-[0_20px_50px_-30px_rgba(191,18,28,0.55)] transition hover:bg-[#e34949];
+    .dk-form .fi-button.fi-color-primary:not([disabled]) {
+        @apply rounded-lg bg-[#f15858] py-3 text-sm font-semibold text-white shadow-[0_22px_55px_-30px_rgba(191,18,28,0.55)] transition hover:bg-[#e34949];
     }
 
-    .ssr-footer {
+    .dk-footer {
         @apply space-y-1 text-center text-xs text-slate-500;
     }
 }

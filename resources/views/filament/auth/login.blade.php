@@ -10,19 +10,18 @@
     $phone = $setting?->phone ?? '0811-2162-204';
 @endphp
 
-<div class="ssr-login">
-    <div class="ssr-banner"></div>
-    <div class="ssr-panel">
-        <div class="ssr-panel-inner">
-            <div class="ssr-header">
-                <img src="{{ asset('assets/images/kug.png') }}" alt="KUG" class="ssr-logo">
-                <h1 class="ssr-title">Welcome Back!</h1>
-                <p class="ssr-subtitle">Sign in to continue to Direktorat Keuangan Telkom University.</p>
+<div class="dk-login">
+    <div class="dk-panel">
+        <div class="dk-panel-card">
+            <div class="dk-header">
+                <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="dk-logo">
+                <h1 class="dk-title">Welcome Back!</h1>
+                <p class="dk-subtitle">Masuk ke portal Direktorat Keuangan Telkom University.</p>
             </div>
 
             {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 
-            <x-filament-panels::form id="form" wire:submit="authenticate" class="ssr-form">
+            <x-filament-panels::form id="form" wire:submit="authenticate" class="dk-form">
                 {{ $this->form }}
 
                 <x-filament-panels::form.actions
@@ -33,7 +32,7 @@
 
             {{ FilamentView::renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 
-            <div class="ssr-footer">
+            <div class="dk-footer">
                 <p>Finance Care — {{ $email }} · {{ $phone }}</p>
                 <p>© {{ now()->year }} Direktorat Keuangan Telkom University.</p>
             </div>
