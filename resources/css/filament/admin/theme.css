@@ -215,7 +215,8 @@
     }
 
     .dk-form .fi-button.fi-color-primary:not([disabled]) {
-        @apply rounded-xl bg-gradient-to-r from-[#f15858] to-[#f58f63] py-3 text-base font-semibold text-white shadow-[0_28px_55px_-30px_rgba(191,18,28,0.55)] transition hover:from-[#e94a4a] hover:to-[#f47b54];
+        @apply rounded-xl bg-[#bf121c] py-3 text-base font-semibold uppercase tracking-wide text-white shadow-[0_24px_55px_-28px_rgba(191,18,28,0.6)] transition hover:bg-[#a60f18];
+        border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     .dk-footer {

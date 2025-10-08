@@ -19,7 +19,7 @@
     <div class="dk-login__panel">
         <div class="dk-panel-card">
             <div class="dk-header">
-                <img src="{{ asset('assets/images/logo-kug-panjang.png') }}" alt="Direktorat Keuangan" class="dk-logo">
+                <img src="{{ asset('assets/images/kug.png') }}" alt="Direktorat Keuangan" class="dk-logo">
                 <h1 class="dk-title">Welcome Back!</h1>
                 <p class="dk-subtitle">Masuk ke portal Direktorat Keuangan Telkom University.</p>
             </div>
