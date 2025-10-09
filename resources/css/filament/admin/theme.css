@@ -215,14 +215,15 @@
     }
 
     .dk-form .fi-button.fi-color-primary:not([disabled]) {
-        @apply rounded-xl py-3 text-base font-semibold uppercase tracking-wide text-white transition;
-        background: linear-gradient(120deg, #bf121c 0%, #e23d3d 100%);
-        box-shadow: 0 26px 60px -28px rgba(191, 18, 28, 0.55);
+        @apply rounded-xl py-3 text-base font-semibold uppercase tracking-wide text-white transition shadow-lg;
+        background: linear-gradient(120deg, #d7191c 0%, #bf121c 100%);
+        box-shadow: 0 28px 65px -30px rgba(191, 18, 28, 0.6);
         border: 0;
+        color: #fff !important;
     }
 
     .dk-form .fi-button.fi-color-primary:not([disabled]):hover {
-        background: linear-gradient(120deg, #a9101a 0%, #d63232 100%);
+        background: linear-gradient(120deg, #c1121f 0%, #a40f1a 100%);
     }
 
     .dk-footer {
