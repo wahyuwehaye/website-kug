@@ -216,14 +216,16 @@
 
     .dk-form .fi-button.fi-color-primary:not([disabled]) {
         @apply rounded-xl py-3 text-base font-semibold uppercase tracking-wide text-white transition shadow-lg;
-        background: linear-gradient(120deg, #d7191c 0%, #bf121c 100%) !important;
+        background-color: #bf121c !important;
+        background-image: none !important;
         box-shadow: 0 32px 70px -32px rgba(191, 18, 28, 0.62);
         border: none;
         color: #ffffff !important;
     }
 
     .dk-form .fi-button.fi-color-primary:not([disabled]):hover {
-        background: linear-gradient(120deg, #c1121f 0%, #9e0e18 100%) !important;
+        background-color: #a60f1a !important;
+        background-image: none !important;
         box-shadow: 0 34px 75px -32px rgba(191, 18, 28, 0.68);
     }
 
