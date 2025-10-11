@@ -214,23 +214,22 @@
         box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.06);
     }
 
-    .dk-form .fi-button.fi-color-primary:not([disabled]) {
+    .dk-form .fi-btn {
         @apply rounded-xl py-3 text-base font-semibold uppercase tracking-wide text-white transition shadow-lg;
         background-color: #bf121c !important;
         background-image: none !important;
         box-shadow: 0 32px 70px -32px rgba(191, 18, 28, 0.62);
-        border: none;
+        border: none !important;
         color: #ffffff !important;
     }
 
-    .dk-form .fi-button.fi-color-primary:not([disabled]):hover {
+    .dk-form .fi-btn:hover {
         background-color: #a60f1a !important;
-        background-image: none !important;
         box-shadow: 0 34px 75px -32px rgba(191, 18, 28, 0.68);
     }
 
-    .dk-form .fi-button.fi-color-primary:not([disabled]) .fi-btn-label,
-    .dk-form .fi-button.fi-color-primary:not([disabled]) svg {
+    .dk-form .fi-btn .fi-btn-label,
+    .dk-form .fi-btn svg {
         color: #ffffff !important;
     }
 
